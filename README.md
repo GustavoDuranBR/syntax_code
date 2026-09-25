@@ -34,6 +34,12 @@ assinado digitalmente e qualquer alteração faz o Jurix recusá-lo. Ele é gera
 
 Ordem: **primeiro a release** (com o instalador de nome exato), **depois o push do site**.
 
+## Cache do navegador
+
+O GitHub Pages manda o navegador guardar cada arquivo por 10 minutos. Ao mudar `style.css`,
+`components.js` ou os arquivos de `jurix/`, **aumente o `?v=` nas páginas** (ex.: `style.css?v=20260925`),
+para o navegador não misturar HTML novo com CSS antigo (ou o contrário).
+
 ## Testar localmente
 
 ```powershell
