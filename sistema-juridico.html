@@ -4,141 +4,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jurix — Duran Labs</title>
+    <title>Jurix — Gestão jurídica segura para escritórios de advocacia | Syntax Code</title>
+    <meta name="description" content="Jurix: clientes, processos, prazos, documentos automáticos, Radar CNJ e um copiloto de IA que protege os dados dos seus clientes. Sistema desktop para Windows, com dados no seu computador.">
+    <meta property="og:title" content="Jurix — Gestão jurídica segura para escritórios de advocacia">
+    <meta property="og:description" content="Clientes, processos, prazos, documentos automáticos e IA com proteção LGPD, num só sistema desktop.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#1F2A44">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A66B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='24' height='24' rx='5' fill='%231F2A44' stroke='none'/%3E%3Cpath d='m16 15 2.5-6.5L21 15c-.7.5-1.6.8-2.5.8s-1.8-.3-2.5-.8Z'/%3E%3Cpath d='m3 15 2.5-6.5L8 15c-.7.5-1.6.8-2.5.8S3.7 15.5 3 15Z'/%3E%3Cpath d='M8 19.5h8'/%3E%3Cpath d='M12 4v15.5'/%3E%3Cpath d='M4 7.5h2c2 0 4-1 6-2 2 1 4 2 6 2h2'/%3E%3C/svg%3E">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="jurix/jurix.css">
 </head>
 
 <body>
 
-    <header class="hero" data-aos="fade-down">
-        <h1><i class="fa-solid fa-scale-balanced"></i> Jurix (v2.0)</h1>
-        <p>Software SaaS Desktop para Gestão Jurídica, Inteligência Artificial e DataJud</p>
+    <!-- Ícones (traço, estilo Lucide — os mesmos do Jurix) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="i-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="i-signature" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m8 17 2-3 2 2 3-4"/></symbol>
+        <symbol id="i-landmark" viewBox="0 0 24 24"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/></symbol>
+        <symbol id="i-gavel" viewBox="0 0 24 24"><path d="m14.5 12.5-8 8a2.12 2.12 0 1 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></symbol>
+        <symbol id="i-message" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+        <symbol id="i-kanban" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
+        <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17v4"/><path d="M17 19h4"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+        <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+        <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+        <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></symbol>
+        <symbol id="i-save" viewBox="0 0 24 24"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/></symbol>
+        <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r="1" fill="currentColor"/><circle cx="17.5" cy="10.5" r="1" fill="currentColor"/><circle cx="6.5" cy="12.5" r="1" fill="currentColor"/><circle cx="8.5" cy="7.5" r="1" fill="currentColor"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M5.78 5.78A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.31-.2"/><path d="M21.53 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7 7 0 0 0 9.52 5.07"/></symbol>
+        <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    </svg>
 
-        <nav id="main-nav"></nav>
+    <!-- ============================== NAVEGAÇÃO ============================== -->
+    <div class="faixa-syntax">
+        <div class="largura faixa-syntax-conteudo">
+            <a href="index.html"><span aria-hidden="true">&larr;</span> Syntax Code</a>
+            <span>Um produto <a href="index.html">Syntax Code</a></span>
+        </div>
+    </div>
+
+    <header class="topo">
+        <div class="largura topo-conteudo">
+            <a href="#inicio" class="marca" aria-label="Jurix — início da página">
+                <span class="marca-icone"><svg class="ic"><use href="#i-scale"/></svg></span>
+                <span class="marca-texto"><strong>Jurix</strong><small>por Syntax Code</small></span>
+            </a>
+            <button type="button" class="menu-botao" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <svg class="ic"><use href="#i-menu"/></svg>
+            </button>
+            <nav id="menu-principal" class="menu" aria-label="Seções da página">
+                <a href="#recursos">Recursos</a>
+                <a href="#copiloto">Copiloto IA</a>
+                <a href="#seguranca">Segurança</a>
+                <a href="#aparencias">Aparências</a>
+                <a href="#planos">Planos</a>
+                <a href="#perguntas">Dúvidas</a>
+                <a href="#download">Download</a>
+                <a href="#contato" class="botao botao-dourado botao-pequeno">Solicitar demonstração</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="container">
+    <main id="inicio">
 
-        <section class="section" data-aos="fade-up">
-            <h2>📋 O que é o Jurix?</h2>
-            <p>
-                O <strong>Jurix</strong> (antigo Sistema Jurídico) é a evolução definitiva para a gestão do seu
-                escritório de advocacia.
-                Projetado para ser robusto, rápido e 100% focado em produtividade, ele centraliza cadastros de clientes,
-                andamentos de processos, automação de documentos e agora conta com Inteligência Artificial num ambiente altamente seguro.
-            </p>
-        </section>
+        <!-- ============================== HERO ============================== -->
+        <section class="hero">
+            <div class="largura hero-grade">
+                <div class="hero-texto">
+                    <span class="selo">Sistema desktop para escritórios de advocacia</span>
+                    <h1>A gestão do seu escritório, organizada e protegida.</h1>
+                    <p class="hero-sub">
+                        Clientes, processos, prazos, documentos automáticos, acompanhamento do CNJ e um
+                        copiloto de IA que protege os dados dos seus clientes — tudo num só sistema, com os
+                        dados guardados no seu computador.
+                    </p>
+                    <div class="hero-acoes">
+                        <a href="#contato" class="botao botao-dourado">Solicitar demonstração <svg class="ic"><use href="#i-arrow"/></svg></a>
+                        <a href="#recursos" class="botao botao-contorno">Conhecer os recursos</a>
+                    </div>
+                    <ul class="hero-garantias">
+                        <li><svg class="ic"><use href="#i-check"/></svg> Funciona sem internet no dia a dia</li>
+                        <li><svg class="ic"><use href="#i-check"/></svg> Dados no seu computador ou na rede do escritório</li>
+                        <li><svg class="ic"><use href="#i-check"/></svg> Proteção de dados pessoais (LGPD)</li>
+                    </ul>
+                </div>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2><i class="fa-solid fa-robot"></i> Copiloto Jurídico IA & DataAgent</h2>
-            <p>
-                Integração nativa com um Assistente de Inteligência Artificial em nuvem para consultas jurídicas, resumos de peças e auxílio na produtividade do escritório.
-            </p>
-            <ul>
-                <li><b>DataAgent (LGPD):</b> Motor de anonimização local que mascara automaticamente nomes reais, CPFs e CNPJs antes de qualquer envio para a nuvem.</li>
-                <li><b>Sigilo Absoluto:</b> A reversão dos dados anonimizados ocorre estritamente dentro do seu computador ("Privacy by Design").</li>
-                <li><i>* Funcionalidade exclusiva para licenças Intermediária e Full.</i></li>
-            </ul>
-        </section>
-
-        <section class="section" data-aos="fade-up">
-            <h2><i class="fa-solid fa-satellite-dish"></i> Radar DataJud (CNJ) e Agenda</h2>
-            <p>
-                Nunca mais perca um andamento importante. O sistema monitora processos em tempo real diretamente na base nacional.
-            </p>
-            <ul>
-                <li><b>Monitoramento ao Vivo:</b> Varredura automática no painel do Conselho Nacional de Justiça (CNJ).</li>
-                <li>Notificações visuais e automáticas de audiências e prazos processuais no Kanban.</li>
-                <li><i>* Radar Automático exclusivo para licenças Full.</i></li>
-            </ul>
-        </section>
-
-        <section class="section dark" data-aos="fade-up">
-            <h2><i class="fa-solid fa-network-wired"></i> Arquitetura em Rede (Multi-Máquinas)</h2>
-            <p>
-                Trabalhe em equipe sem lentidão. O Jurix possui um configurador inteligente que permite
-                implementar o sistema em rede local de forma automática.
-            </p>
-            <ul>
-                <li><b>Servidor Principal:</b> Centraliza o banco de dados de forma segura.</li>
-                <li><b>Estações de Trabalho:</b> Recepção e outras salas acessam os dados em tempo real.</li>
-                <li>Sincronização imediata entre todos os computadores do escritório.</li>
-            </ul>
-        </section>
-
-        <section class="section" data-aos="fade-up">
-            <h2><i class="fa-solid fa-file-signature"></i> Automação de Documentos (Integração Word)</h2>
-            <p>
-                Gere contratos, procurações e termos com um único clique. O Jurix preenche automaticamente os modelos
-                do escritório com os dados do cliente selecionado.
-            </p>
-            <ul>
-                <li>Modelos blindados (.docx) que preservam a formatação visual do seu escritório.</li>
-                <li>Geração automática de arquivos PDF prontos para impressão ou assinatura digital.</li>
-                <li>Integração nativa e otimizada com o LibreOffice.</li>
-            </ul>
-        </section>
-
-        <section class="section dark" data-aos="fade-up">
-            <h2>🔐 Licenciamento em Tiers e Segurança</h2>
-            <p>
-                Os seus dados são confidenciais e estão protegidos por múltiplas camadas de segurança corporativa.
-            </p>
-            <ul>
-                <li><b>Ativação por Hardware (SaaS):</b> Licenciamento profissional atrelado ao ID da placa-mãe.</li>
-                <li><b>Níveis de Assinatura:</b> Chaves criptografadas divididas em três planos (Básica, Intermediária e Full), liberando módulos dinamicamente.</li>
-                <li><b>Sistema Multiusuário:</b> Perfis de Admin (controle total), Super (edição) e Padrão (apenas consulta).</li>
-            </ul>
-        </section>
-
-        <section class="section" data-aos="fade-up">
-            <h2>💾 Backup e Instalador Inteligente</h2>
-            <p>
-                O sistema protege o seu escritório contra perda de dados através de rotinas automatizadas e suporte
-                inteligente.
-            </p>
-            <ul>
-                <li><b>Migração Passiva:</b> Detecção e migração automática de dados de versões antigas.</li>
-                <li><b>Backup Integrado:</b> Cópias de segurança geradas automaticamente.</li>
-                <li><b>Localização dos Dados:</b> Banco estrutural isolado e salvo em <code>%LOCALAPPDATA%\Jurix\data</code>.</li>
-            </ul>
-        </section>
-
-        <section class="section dark" data-aos="fade-up">
-            <h2>⬇ Download</h2>
-            <p>Faça o download do instalador da versão mais recente através do botão abaixo.</p>
-
-            <div style="text-align: center; margin-top: 20px;">
-                <a id="btn-download-dinamico" data-app-id="juridico" class="download-btn" href="#">
-                    <i class="fa-solid fa-download"></i>
-                    Baixar Instalador (Jurix)
-                </a>
-                <a href="https://github.com/GustavoDuranBR/duranapps/releases/download/v2.0.0/Manual_Jurix_v2.pdf" class="download-btn"
-                    style="background-color: #3b82f6;">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    Baixar Manual de Instalação (.pdf)
-                </a>
+                <!-- Reprodução da interface (dados fictícios); o visitante alterna as 3 aparências -->
+                <div class="hero-visual">
+                    <div class="janela" data-tema="classico" id="janela-demo" aria-label="Reprodução da tela inicial do Jurix com dados fictícios" role="img">
+                        <div class="janela-barra"><i></i><i></i><i></i><span>Jurix — Gestão Jurídica</span></div>
+                        <div class="app">
+                            <div class="app-lateral">
+                                <div class="app-marca"><span><svg class="ic"><use href="#i-scale"/></svg></span><b>Jurix</b></div>
+                                <div class="app-item ativo"><svg class="ic"><use href="#i-home"/></svg>Início</div>
+                                <div class="app-item"><svg class="ic"><use href="#i-gavel"/></svg>Processos</div>
+                                <div class="app-item"><svg class="ic"><use href="#i-kanban"/></svg>Kanban</div>
+                                <div class="app-item"><svg class="ic"><use href="#i-calendar"/></svg>Agenda</div>
+                                <div class="app-item"><svg class="ic"><use href="#i-history"/></svg>Auditoria</div>
+                                <div class="app-espaco"></div>
+                                <div class="app-item"><svg class="ic"><use href="#i-palette"/></svg>Aparência</div>
+                                <div class="app-item"><svg class="ic"><use href="#i-lock"/></svg>Bloquear</div>
+                            </div>
+                            <div class="app-conteudo">
+                                <div class="app-escritorio">[Nome do seu escritório]</div>
+                                <div class="app-busca"><svg class="ic"><use href="#i-search"/></svg>Nome, CPF ou nº do processo<span class="app-botao">+ Novo cliente</span></div>
+                                <div class="app-titulo"><svg class="ic"><use href="#i-clock"/></svg>Últimos registros editados</div>
+                                <div class="app-cartoes">
+                                    <div class="app-cartao"><b>Ana Paula Ribeiro</b><small>CPF ***.***.***-09</small></div>
+                                    <div class="app-cartao"><b>Construtora Alvorada Ltda</b><small>CNPJ **.***.***/0001-95</small></div>
+                                </div>
+                                <div class="app-radar">
+                                    <div class="app-titulo"><svg class="ic"><use href="#i-landmark"/></svg>Radar CNJ <span class="app-status">Monitorando</span></div>
+                                    <div class="app-mov"><b>Construtora Alvorada Ltda</b><small>Juntada de petição · TJSP</small></div>
+                                    <div class="app-mov"><b>Ana Paula Ribeiro</b><small>Conclusos para decisão · TJMG</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="troca-tema" role="group" aria-label="Ver o Jurix em outra aparência">
+                        <span>Veja nas 3 aparências:</span>
+                        <button type="button" data-ver-tema="classico" aria-pressed="true">Clássico</button>
+                        <button type="button" data-ver-tema="moderno" aria-pressed="false">Moderno</button>
+                        <button type="button" data-ver-tema="elegante" aria-pressed="false">Escuro elegante</button>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- ============================== RECURSOS ============================== -->
+        <section id="recursos" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Recursos</span>
+                    <h2>Tudo o que a rotina do escritório pede, num só lugar.</h2>
+                    <p>Do cadastro do cliente ao protocolo, sem planilhas soltas nem pastas perdidas.</p>
+                </div>
+                <div class="grade-recursos">
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-users"/></svg></span>
+                        <h3>Cadastro completo de clientes</h3>
+                        <p>Pessoa física e jurídica, dependentes, representantes, endereços, processos e parte contrária, com validação de CPF e pasta de documentos criada automaticamente. Encontre qualquer cliente pelo nome, CPF, CNPJ ou nº do processo.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-signature"/></svg></span>
+                        <h3>Documentos em um clique</h3>
+                        <p>Procuração, declaração de hipossuficiência, contrato de honorários, recibo, substabelecimento, renúncia de mandato, termo LGPD e o pacote 3 em 1 — preenchidos com os dados do cliente e do advogado, em Word ou PDF.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-landmark"/></svg></span>
+                        <h3>Radar CNJ</h3>
+                        <p>Acompanha os processos cadastrados na base pública do DataJud (tribunais estaduais, federais e trabalhistas) pelo servidor do Jurix, disponível 24 horas, e avisa quando há movimentação nova. Sem cadastro de chave no CNJ.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-kanban"/></svg></span>
+                        <h3>Kanban de tarefas</h3>
+                        <p>Movimentações do Radar viram tarefas automaticamente, ao lado das tarefas da equipe: a fazer, em andamento e concluído.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-calendar"/></svg></span>
+                        <h3>Agenda e prazos</h3>
+                        <p>Audiências, reuniões e prazos com avisos na área de notificações do Windows no dia e na véspera.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-sparkles"/></svg></span>
+                        <h3>Copiloto de IA</h3>
+                        <p>Pergunte em português: telefone de um cliente, andamento de um processo, uma análise do caso — ou peça um e-mail ou uma mensagem de WhatsApp pronta, assinada com seus dados. Com proteção de dados embutida.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-gavel"/></svg></span>
+                        <h3>Painel de processos</h3>
+                        <p>Todos os processos numa tela, com tribunal, situação e última movimentação. Consulte o CNJ na hora, com um clique, e abra o cadastro já no processo escolhido. Número no padrão CNJ, com conferência dos dígitos verificadores.</p>
+                    </article>
+                    <article class="recurso">
+                        <span class="recurso-icone"><svg class="ic"><use href="#i-globe"/></svg></span>
+                        <h3>Trabalho em equipe</h3>
+                        <p>Use em um computador ou em vários, com o banco de dados na rede do escritório — configurado em poucos passos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== COPILOTO IA + LGPD ============================== -->
+        <section id="copiloto" class="secao secao-escura">
+            <div class="largura grade-dupla">
+                <div>
+                    <span class="rotulo rotulo-claro">Copiloto de IA com proteção de dados</span>
+                    <h2>A IA ajuda. Os dados do seu cliente ficam com você.</h2>
+                    <p class="texto-claro">
+                        O copiloto trabalha em duas camadas. Consultas diretas — telefone, e-mail, endereço,
+                        “de quem é este número”, lista de clientes, contagens, tarefas e agenda — são respondidas
+                        <strong>no seu computador, na hora, sem internet</strong>.
+                    </p>
+                    <p class="texto-claro">
+                        Quando a pergunta pede análise, a ficha vai para a IA em nuvem <strong>com nome, CPF, RG,
+                        telefone, e-mail e endereço substituídos por códigos</strong>. A resposta volta com os
+                        dados reais apenas na sua tela.
+                    </p>
+                    <ul class="lista-check lista-clara">
+                        <li><svg class="ic"><use href="#i-check"/></svg> Consulta ao CNJ integrada nas análises de processos</li>
+                        <li><svg class="ic"><use href="#i-check"/></svg> Redige e-mails e mensagens de WhatsApp prontos, com destinatário e sua assinatura (nome, OAB e escritório) montados no seu computador</li>
+                        <li><svg class="ic"><use href="#i-check"/></svg> Lembra o cliente da conversa para as próximas perguntas</li>
+                        <li><svg class="ic"><use href="#i-check"/></svg> Só o advogado responsável usa a IA; estagiários não</li>
+                    </ul>
+                </div>
+
+                <div class="demo-copiloto" aria-label="Exemplo do que vai para a nuvem e do que aparece na tela (dados fictícios)">
+                    <div class="bolha bolha-usuario">
+                        <small>Você pergunta</small>
+                        Quais documentos estão faltando no processo da Ana Paula Ribeiro?
+                    </div>
+                    <div class="bolha bolha-nuvem">
+                        <small><svg class="ic"><use href="#i-cloud-off"/></svg> O que a IA em nuvem recebe</small>
+                        Quais documentos estão faltando no processo de <code>[NOME_1]</code>?
+                        <span class="bolha-ficha">Ficha: <code>[NOME_1]</code> · CPF <code>[DOC_1]</code> · Tel. <code>[TEL_1]</code> · Situação: aguardando documentos</span>
+                    </div>
+                    <div class="bolha bolha-resposta">
+                        <small>Você vê</small>
+                        O processo de <strong>Ana Paula Ribeiro</strong> está aguardando documentos. Confira o despacho
+                        que determinou a juntada e contate a cliente pelo <strong>(31) 9****-4821</strong>.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== SEGURANÇA ============================== -->
+        <section id="seguranca" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Segurança e conformidade</span>
+                    <h2>Sigilo profissional levado a sério.</h2>
+                    <p>Cada pessoa vê apenas o que precisa, e tudo o que importa fica registrado.</p>
+                </div>
+
+                <div class="grade-seguranca">
+                    <article class="item-seguranca">
+                        <svg class="ic"><use href="#i-users"/></svg>
+                        <div><h3>Perfis de acesso</h3><p>Advogado responsável, estagiário e administrador de TI, com permissões conferidas pelo próprio sistema — não apenas escondidas na tela.</p></div>
+                    </article>
+                    <article class="item-seguranca">
+                        <svg class="ic"><use href="#i-history"/></svg>
+                        <div><h3>Trilha de auditoria</h3><p>Acessos, cadastros, exclusões, documentos gerados, mudanças de usuários, configurações e backups ficam registrados, com CPF mascarado e sem senhas.</p></div>
+                    </article>
+                    <article class="item-seguranca">
+                        <svg class="ic"><use href="#i-lock"/></svg>
+                        <div><h3>Bloqueio automático</h3><p>Após 15 minutos sem uso, a tela é bloqueada e a sessão encerrada. Bloqueio manual a um clique.</p></div>
+                    </article>
+                    <article class="item-seguranca">
+                        <svg class="ic"><use href="#i-key"/></svg>
+                        <div><h3>Senhas protegidas</h3><p>Mínimo de 8 caracteres, troca obrigatória no primeiro acesso e após redefinição, e bloqueio temporário depois de 5 tentativas erradas.</p></div>
+                    </article>
+                    <article class="item-seguranca">
+                        <svg class="ic"><use href="#i-monitor"/></svg>
+                        <div><h3>Só o Jurix acessa os dados</h3><p>O sistema aceita comandos apenas da própria janela: outros programas e navegadores do computador são recusados.</p></div>
+                    </article>
+                    <article class="item-seguranca">
+                        <svg class="ic"><use href="#i-save"/></svg>
+                        <div><h3>Dados sob seu controle</h3><p>Banco de dados e documentos no seu computador ou servidor, com backup completo feito pelo administrador.</p></div>
+                    </article>
+                </div>
+
+                <div class="tabela-rolagem">
+                    <table class="tabela-perfis">
+                        <caption>O que cada perfil pode fazer</caption>
+                        <thead>
+                            <tr><th scope="col">Recurso</th><th scope="col">Advogado responsável</th><th scope="col">Estagiário</th><th scope="col">Administrador de TI</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><th scope="row">Consultar clientes, processos e documentos</th><td class="sim">Sim</td><td class="sim">Sim</td><td class="nao">Não</td></tr>
+                            <tr><th scope="row">Cadastrar, editar e excluir clientes</th><td class="sim">Sim</td><td class="nao">Não</td><td class="nao">Não</td></tr>
+                            <tr><th scope="row">Gerar documentos e anexar arquivos</th><td class="sim">Sim</td><td class="nao">Não</td><td class="nao">Não</td></tr>
+                            <tr><th scope="row">Copiloto de IA</th><td class="sim">Sim</td><td class="nao">Não</td><td class="nao">Não</td></tr>
+                            <tr><th scope="row">Agenda e Kanban</th><td class="sim">Sim</td><td class="sim">Sim</td><td class="nao">Não</td></tr>
+                            <tr><th scope="row">Trilha de auditoria</th><td class="sim">Sim</td><td class="nao">Não</td><td class="nao">Não</td></tr>
+                            <tr><th scope="row">Usuários, configurações e backup</th><td class="nao">Não</td><td class="nao">Não</td><td class="sim">Sim</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== APARÊNCIAS ============================== -->
+        <section id="aparencias" class="secao secao-suave">
+            <div class="largura">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Aparências</span>
+                    <h2>Cada pessoa escolhe o visual com que trabalha melhor.</h2>
+                    <p>Três aparências pensadas para o dia a dia jurídico. A escolha é por usuário e fica salva.</p>
+                </div>
+                <div class="grade-temas">
+                    <button type="button" class="cartao-tema" data-ver-tema="classico" aria-pressed="true">
+                        <span class="mini mini-classico"><i></i><em></em></span>
+                        <strong class="fonte-serif">Clássico</strong>
+                        <span>Marinho e dourado, títulos serifados. Sóbrio e tradicional.</span>
+                    </button>
+                    <button type="button" class="cartao-tema" data-ver-tema="moderno" aria-pressed="false">
+                        <span class="mini mini-moderno"><i></i><em></em></span>
+                        <strong>Moderno</strong>
+                        <span>Claro e arejado, azul-petróleo. Limpo e objetivo.</span>
+                    </button>
+                    <button type="button" class="cartao-tema" data-ver-tema="elegante" aria-pressed="false">
+                        <span class="mini mini-elegante"><i></i><em></em></span>
+                        <strong class="fonte-serif">Escuro elegante</strong>
+                        <span>Grafite, bordô e champanhe. Descansa a vista.</span>
+                    </button>
+                </div>
+                <p class="nota-centro">Clique numa aparência para vê-la na tela de exemplo no topo da página.</p>
+            </div>
+        </section>
+
+        <!-- ============================== IMPLANTAÇÃO ============================== -->
+        <section class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Implantação</span>
+                    <h2>Do instalador ao primeiro cliente em poucos minutos.</h2>
+                </div>
+                <ol class="passos">
+                    <li><span>1</span><h3>Instale</h3><p>Instalador para Windows 10 e 11. Sem servidor dedicado e sem configurações técnicas.</p></li>
+                    <li><span>2</span><h3>Ative a licença</h3><p>A licença é vinculada ao computador e define os recursos do seu plano.</p></li>
+                    <li><span>3</span><h3>Monte a equipe</h3><p>O administrador cria os acessos e cada pessoa define a própria senha no primeiro login.</p></li>
+                    <li><span>4</span><h3>Comece a trabalhar</h3><p>Cadastre clientes, gere documentos e acompanhe processos. Para vários computadores, basta apontar o banco na rede.</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================== PLANOS ============================== -->
+        <section id="planos" class="secao secao-suave">
+            <div class="largura">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Planos</span>
+                    <h2>Escolha o nível ideal para o seu escritório.</h2>
+                    <p>Valores sob consulta.</p>
+                </div>
+                <div class="grade-planos">
+                    <article class="plano">
+                        <h3>Básico</h3>
+                        <p class="plano-desc">A base da gestão do escritório.</p>
+                        <ul class="lista-check">
+                            <li><svg class="ic"><use href="#i-check"/></svg> Cadastro completo de clientes e processos</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Documentos automáticos (Word e PDF)</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Agenda, prazos e Kanban</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Perfis de acesso, auditoria e backup</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Três aparências</li>
+                        </ul>
+                        <a href="#contato" class="botao botao-contorno-escuro">Consultar</a>
+                    </article>
+                    <article class="plano">
+                        <h3>Intermediário</h3>
+                        <p class="plano-desc">Para quem quer ganhar tempo com IA.</p>
+                        <ul class="lista-check">
+                            <li><svg class="ic"><use href="#i-check"/></svg> Tudo do plano Básico</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Copiloto de IA com proteção de dados</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Consultas locais instantâneas</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> E-mails e mensagens de WhatsApp redigidos e assinados</li>
+                        </ul>
+                        <a href="#contato" class="botao botao-contorno-escuro">Consultar</a>
+                    </article>
+                    <article class="plano plano-destaque">
+                        <span class="plano-selo">Mais completo</span>
+                        <h3>Full</h3>
+                        <p class="plano-desc">Acompanhamento processual automático.</p>
+                        <ul class="lista-check">
+                            <li><svg class="ic"><use href="#i-check"/></svg> Tudo do plano Intermediário</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Radar CNJ com monitoramento automático, 24 horas</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Painel de processos com consulta ao CNJ na hora</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Movimentações viram tarefas no Kanban</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Consulta ao CNJ dentro do Copiloto</li>
+                        </ul>
+                        <a href="#contato" class="botao botao-dourado">Consultar</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== DOWNLOAD ============================== -->
+        <section id="download" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Download</span>
+                    <h2>Jurix <span data-jurix-versao>v2.1.0</span> para Windows.</h2>
+                    <p>O instalador serve tanto para o computador principal quanto para as estações da rede. Para usar o sistema é preciso uma licença, enviada pela Syntax Code após a contratação.</p>
+                </div>
+                <div class="grade-download">
+                    <div class="cartao-download">
+                        <h3>Instalador</h3>
+                        <ul class="lista-check">
+                            <li><svg class="ic"><use href="#i-check"/></svg> Windows 10 ou 11</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Microsoft Edge WebView2 (já vem no Windows 11)</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Word ou LibreOffice para gerar PDF (opcional)</li>
+                            <li><svg class="ic"><use href="#i-check"/></svg> Atualizações automáticas, assinadas digitalmente</li>
+                        </ul>
+                        <div class="botoes-download">
+                            <a href="#" data-jurix-download class="botao botao-dourado">Baixar instalador</a>
+                            <a href="#" data-jurix-manual class="botao botao-contorno-escuro">Manual de instalação (PDF)</a>
+                        </div>
+                    </div>
+                    <div class="cartao-download">
+                        <h3>Já é cliente?</h3>
+                        <p>Não é preciso baixar de novo a cada versão: o próprio Jurix avisa quando há uma atualização e instala com um clique, em <strong>Configurações &rsaquo; Atualizações</strong>, preservando os dados e fazendo backup antes.</p>
+                        <p>Ainda não é cliente? <a href="#contato">Solicite uma demonstração</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== PERGUNTAS ============================== -->
+        <section id="perguntas" class="secao secao-suave">
+            <div class="largura largura-estreita">
+                <div class="cabecalho-secao">
+                    <span class="rotulo">Dúvidas frequentes</span>
+                    <h2>Perguntas que os escritórios costumam fazer.</h2>
+                </div>
+                <div class="faq">
+                    <details>
+                        <summary>Preciso de internet para usar o Jurix?</summary>
+                        <p>Não para o dia a dia: cadastros, documentos, agenda, Kanban e as consultas diretas do copiloto funcionam sem internet. A internet é usada apenas pelas análises da IA em nuvem e pelo Radar CNJ.</p>
+                    </details>
+                    <details>
+                        <summary>Por que um processo não aparece no Radar CNJ?</summary>
+                        <p>O Radar usa a base pública do DataJud, mantida pelo CNJ. Processos em segredo de justiça não são publicados nela, e alguns processos antigos ou físicos ainda não foram enviados pelos tribunais. Nesses casos o Jurix avisa que o processo não foi localizado — o cadastro e o restante do sistema continuam funcionando normalmente.</p>
+                    </details>
+                    <details>
+                        <summary>O Radar envia os dados dos meus clientes para fora?</summary>
+                        <p>Não. Para consultar o CNJ, o Jurix envia apenas o número do processo ao servidor do Jurix, que o repassa ao DataJud. Nomes, documentos e contatos dos clientes não saem do seu computador. O servidor não registra os números em seus logs e guarda as respostas do CNJ apenas temporariamente, em memória, para agilizar novas consultas.</p>
+                    </details>
+                    <details>
+                        <summary>Onde ficam os dados dos meus clientes?</summary>
+                        <p>No computador do escritório ou numa pasta da sua rede. O Jurix não mantém uma cópia dos seus cadastros em servidores externos.</p>
+                    </details>
+                    <details>
+                        <summary>O Jurix atende à LGPD?</summary>
+                        <p>O sistema foi construído com medidas técnicas de proteção: controle de acesso por perfil, trilha de auditoria, bloqueio automático, senhas protegidas e envio de dados à IA somente com os dados pessoais substituídos por códigos. A adequação completa à LGPD também envolve os processos e políticas do seu escritório.</p>
+                    </details>
+                    <details>
+                        <summary>O que a IA recebe quando eu faço uma pergunta?</summary>
+                        <p>Perguntas diretas (contato, busca, contagens, tarefas, agenda) nem saem do computador. Nas análises, a IA recebe a ficha do cliente com nome, documentos, telefone, e-mail e endereço trocados por códigos; os dados reais só aparecem na sua tela.</p>
+                    </details>
+                    <details>
+                        <summary>Posso usar em mais de um computador?</summary>
+                        <p>Sim. Com o Configurador de Rede, que acompanha o instalador, os computadores do escritório passam a usar o mesmo banco de dados numa pasta compartilhada.</p>
+                    </details>
+                    <details>
+                        <summary>Quais os requisitos?</summary>
+                        <p>Windows 10 ou 11. O Word ou o LibreOffice são usados para gerar os documentos em PDF; sem eles, os documentos são gerados em Word (.docx).</p>
+                    </details>
+                    <details>
+                        <summary>A IA substitui a análise do advogado?</summary>
+                        <p>Não. O copiloto organiza informações e sugere caminhos; a decisão e a conferência de prazos e intimações continuam sendo do advogado.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== CONTATO ============================== -->
+        <section id="contato" class="secao secao-escura">
+            <div class="largura largura-estreita">
+                <div class="cabecalho-secao">
+                    <span class="rotulo rotulo-claro">Demonstração</span>
+                    <h2>Veja o Jurix funcionando no seu escritório.</h2>
+                    <p class="texto-claro">Deixe seus dados e entraremos em contato para agendar uma demonstração.</p>
+                </div>
+
+                <form class="formulario" action="https://formspree.io/f/mrpbkzle" method="POST">
+                    <div class="formulario-grade">
+                        <div>
+                            <label for="f-nome">Nome completo</label>
+                            <input id="f-nome" type="text" name="nome" required autocomplete="name">
+                        </div>
+                        <div>
+                            <label for="f-email">E-mail profissional</label>
+                            <input id="f-email" type="email" name="email" required autocomplete="email">
+                        </div>
+                        <div>
+                            <label for="f-telefone">Telefone / WhatsApp</label>
+                            <input id="f-telefone" type="tel" name="telefone" autocomplete="tel">
+                        </div>
+                        <div>
+                            <label for="f-oab">Inscrição OAB</label>
+                            <input id="f-oab" type="text" name="oab" placeholder="OAB/UF 000000">
+                        </div>
+                        <div class="formulario-inteiro">
+                            <label for="f-tamanho">Tamanho do escritório</label>
+                            <select id="f-tamanho" name="tamanho">
+                                <option value="">Selecione</option>
+                                <option>Advogado(a) autônomo(a)</option>
+                                <option>2 a 5 pessoas</option>
+                                <option>6 a 15 pessoas</option>
+                                <option>Mais de 15 pessoas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label class="consentimento">
+                        <input type="checkbox" name="consentimento_lgpd" value="sim" required>
+                        Autorizo o uso destes dados apenas para contato sobre o Jurix, conforme a LGPD.
+                    </label>
+                    <button type="submit" class="botao botao-dourado">Solicitar demonstração</button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <footer data-aos="fade-up"></footer>
+    <footer class="rodape">
+        <div class="largura rodape-conteudo">
+            <div class="marca marca-rodape">
+                <span class="marca-icone"><svg class="ic"><use href="#i-scale"/></svg></span>
+                <span class="marca-texto"><strong>Jurix</strong><small>por Syntax Code</small></span>
+            </div>
+            <p class="rodape-aviso">
+                O Jurix é uma ferramenta de acompanhamento auxiliar baseada no DataJud/CNJ. A conferência de prazos
+                e intimações nos Diários Oficiais e portais dos tribunais permanece de inteira responsabilidade do advogado.
+            </p>
+            <p class="rodape-direitos">Jurix é um produto <a href="index.html">Syntax Code</a>. &copy; 2026 Syntax Code. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-    <script src="components.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="jurix/jurix.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        // Versão e links de download vêm do apps.json do site (mesma fonte da página inicial)
+        fetch("apps.json", { cache: "no-cache" }).then(r => r.json()).then(apps => {
+            const jurix = apps.find(a => a.id === "juridico");
+            if (!jurix) return;
+            document.querySelectorAll("[data-jurix-versao]").forEach(el => el.textContent = jurix.versao);
+            if (jurix.download_url) document.querySelectorAll("[data-jurix-download]").forEach(el => el.href = jurix.download_url);
+            if (jurix.manual_url) document.querySelectorAll("[data-jurix-manual]").forEach(el => el.href = jurix.manual_url);
+        }).catch(() => {});
     </script>
-
 </body>
 
 </html>

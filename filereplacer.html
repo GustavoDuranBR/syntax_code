@@ -4,117 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FileReplacer — Duran Labs</title>
-
+    <title>FileReplacer — Syntax Code</title>
+    <meta name="description" content="FileReplacer: substitua ou distribua o mesmo arquivo em dezenas de subpastas de uma vez, com registro de cada operação.">
+    <meta name="theme-color" content="#0A0F1C">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <header id="cabecalho-site"></header>
 
-    <header class="hero" data-aos="fade-down">
-        <h1><i class="fa-solid fa-arrows-rotate"></i> FileReplacer</h1>
-        <p>Substituição automática de arquivos em múltiplas pastas</p>
-
-        <nav id="main-nav"></nav>
-    </header>
-
-    <main class="container">
-
-        <section class="section" data-aos="fade-up">
-            <h2>📋 Sobre o Aplicativo</h2>
-            <p>
-                O <b>FileReplacer</b> é uma ferramenta desenvolvida para automatizar
-                a substituição ou distribuição de arquivos em múltiplas pastas
-                de forma rápida e segura.
-            </p>
-            <p>
-                Ele foi criado para resolver um problema comum: atualizar o mesmo
-                arquivo em várias subpastas manualmente pode ser demorado e sujeito
-                a erros. O FileReplacer automatiza esse processo em segundos.
-            </p>
+    <main>
+        <section class="hero hero-simples escuro">
+            <div class="largura largura-estreita">
+                <div class="produto-hero-marca">
+                    <span class="icone-quadro"><i class="fa-solid fa-arrows-rotate"></i></span>
+                    <span class="versao" data-versao="filereplacer">v1.0</span>
+                </div>
+                <span class="rotulo">utilitário · produtividade</span>
+                <h1>FileReplacer</h1>
+                <p class="hero-sub">Atualize o mesmo arquivo em dezenas de pastas de uma só vez — rápido, seguro e com registro de tudo o que foi feito.</p>
+                <div class="acoes">
+                    <a class="botao botao-primario" data-download="filereplacer" href="#"><i class="fa-solid fa-download"></i> Baixar para Windows</a>
+                    <a class="botao botao-fantasma" href="#recursos">Ver recursos</a>
+                </div>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2>⚙️ Como Funciona</h2>
-            <p>O funcionamento do aplicativo é simples e direto:</p>
-            <ul>
-                <li>Selecione o arquivo que deseja copiar ou substituir.</li>
-                <li>Escolha a pasta raiz que contém as subpastas.</li>
-                <li>O sistema percorre automaticamente todas as subpastas.</li>
-                <li>O arquivo é copiado para cada uma delas.</li>
-                <li>Se o arquivo já existir, ele será substituído automaticamente.</li>
-            </ul>
+        <section id="recursos" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">recursos</span>
+                    <h2>O fim da cópia manual pasta por pasta.</h2>
+                    <p>Atualizar o mesmo arquivo em várias subpastas à mão é demorado e sujeito a erros. O FileReplacer faz isso em segundos.</p>
+                </div>
+                <div class="grade grade-3">
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-arrows-rotate"></i></span><h3>Substituição automática</h3><p>Se o arquivo já existe na pasta, ele é substituído pela versão nova.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-sitemap"></i></span><h3>Distribuição em lote</h3><p>Percorre todas as subpastas da pasta raiz e copia o arquivo para cada uma.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-circle-check"></i></span><h3>Execução segura</h3><p>Valida o arquivo e o diretório antes de começar.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-terminal"></i></span><h3>Log em tempo real</h3><p>Acompanhe arquivos substituídos, adicionados e eventuais erros.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-file-circle-exclamation"></i></span><h3>Registro de erros</h3><p>Falhas ficam gravadas num arquivo de log para análise posterior.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-bolt"></i></span><h3>Sem travar</h3><p>A operação roda em segundo plano; a interface continua respondendo.</p></article>
+                </div>
+            </div>
         </section>
 
-        <section class="section" data-aos="fade-up">
-            <h2>🚀 Principais Funcionalidades</h2>
-            <ul>
-                <li>Substituição automática de arquivos em múltiplas pastas.</li>
-                <li>Distribuição rápida de arquivos para várias subpastas.</li>
-                <li>Execução segura com validação de arquivo e diretório.</li>
-                <li>Log em tempo real das operações realizadas.</li>
-                <li>Registro automático de erros em arquivo de log.</li>
-            </ul>
+        <section class="secao secao-branca">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">como funciona</span>
+                    <h2>Simples e direto.</h2>
+                </div>
+                <ol class="passos revelar">
+                    <li><h3>Escolha o arquivo</h3><p>Selecione o arquivo que será copiado ou substituído.</p></li>
+                    <li><h3>Escolha a pasta raiz</h3><p>Indique a pasta que contém as subpastas de destino.</p></li>
+                    <li><h3>Execute</h3><p>O FileReplacer percorre todas as subpastas automaticamente.</p></li>
+                    <li><h3>Confira o log</h3><p>Veja o que foi substituído, adicionado ou falhou.</p></li>
+                </ol>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2>📊 Registro de Operações</h2>
-            <p>Durante a execução o sistema mostra um log detalhado com todas as ações realizadas.</p>
-            <ul>
-                <li>Arquivos substituídos</li>
-                <li>Arquivos adicionados</li>
-                <li>Erros encontrados durante a execução</li>
-            </ul>
-            <p>Caso ocorra algum erro, ele é registrado automaticamente em um arquivo de log para facilitar a análise posterior.</p>
+        <section class="secao">
+            <div class="largura grade grade-2">
+                <div class="revelar">
+                    <span class="rotulo">exemplos de uso</span>
+                    <div class="cartao">
+                        <ul style="margin: 0;">
+                            <li>Atualizar o mesmo arquivo de configuração em vários projetos.</li>
+                            <li>Distribuir arquivos atualizados para diversas pastas de clientes.</li>
+                            <li>Substituir bibliotecas ou scripts em múltiplos diretórios.</li>
+                            <li>Automatizar tarefas repetitivas de manutenção de arquivos.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="revelar">
+                    <span class="rotulo">tecnologia</span>
+                    <div class="chips">
+                        <span class="chip">Python<small>linguagem</small></span>
+                        <span class="chip">Tkinter<small>interface</small></span>
+                        <span class="chip">ttkbootstrap<small>visual</small></span>
+                        <span class="chip">shutil / os<small>arquivos</small></span>
+                        <span class="chip">Threading<small>segundo plano</small></span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="section" data-aos="fade-up">
-            <h2>🛠 Tecnologias Utilizadas</h2>
-            <ul>
-                <li><b>Python</b> — linguagem principal da aplicação.</li>
-                <li><b>Tkinter</b> — criação da interface gráfica.</li>
-                <li><b>ttkbootstrap</b> — estilização moderna da interface.</li>
-                <li><b>Shutil</b> — manipulação e cópia de arquivos.</li>
-                <li><b>OS</b> — navegação e manipulação de diretórios.</li>
-                <li><b>Threading</b> — execução da operação sem travar a interface.</li>
-            </ul>
+        <section class="secao" style="padding-top: 0;">
+            <div class="largura">
+                <div class="chamada revelar">
+                    <div>
+                        <span class="rotulo" style="color: var(--sinal);">download</span>
+                        <h2>FileReplacer para Windows</h2>
+                        <p>Instalador simples. Gratuito.</p>
+                    </div>
+                    <div class="acoes">
+                        <a class="botao botao-primario" data-download="filereplacer" href="#"><i class="fa-solid fa-download"></i> Baixar FileReplacer</a>
+                    </div>
+                </div>
+            </div>
         </section>
-
-        <section class="section dark" data-aos="fade-up">
-            <h2>💡 Exemplos de Uso</h2>
-            <ul>
-                <li>Atualizar um mesmo arquivo de configuração em vários projetos.</li>
-                <li>Distribuir arquivos atualizados para diversas pastas.</li>
-                <li>Substituir bibliotecas ou scripts em múltiplos diretórios.</li>
-                <li>Automatizar tarefas repetitivas de manutenção de arquivos.</li>
-            </ul>
-        </section>
-
-        <section class="section" data-aos="fade-up">
-            <h2>⬇ Download</h2>
-            <p>Baixe a versão mais recente do FileReplacer através do botão abaixo.</p>
-            
-            <a id="btn-download-dinamico" data-app-id="filereplacer" class="download-btn" href="#">
-                <i class="fa-solid fa-download"></i>
-                Baixar FileReplacer
-            </a>
-        </section>
-
     </main>
 
-    <footer data-aos="fade-up"></footer>
-
+    <footer id="rodape-site"></footer>
     <script src="components.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    </script>
-
 </body>
+
 </html>

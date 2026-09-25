@@ -2,240 +2,118 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quem Somos — Duran Labs</title>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
-
-  <style>
-    /* ── CTA de contratação ── */
-    .cta-contato {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      border-radius: 12px;
-      padding: 40px 32px;
-      text-align: center;
-      border: 1px solid #2a2a2a;
-      margin-top: 8px;
-    }
-
-    .cta-contato h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--primary);
-      font-size: 1.4rem;
-      margin-bottom: 12px;
-    }
-
-    .cta-contato p {
-      color: #cfcfcf;
-      font-size: 15px;
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto 28px auto;
-    }
-
-    .cta-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      max-width: 540px;
-      margin: 0 auto 32px auto;
-      text-align: left;
-    }
-
-    .cta-item {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 10px;
-      padding: 16px;
-    }
-
-    .cta-item .cta-icon {
-      font-size: 22px;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .cta-item strong {
-      display: block;
-      font-size: 13px;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .cta-item span {
-      font-size: 12px;
-      color: #888;
-      line-height: 1.5;
-    }
-
-    .cta-btn-row {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
-      background: transparent;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 14px;
-      transition: all .25s ease;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(0,230,118,.08);
-      transform: scale(1.02);
-    }
-
-    @media (max-width: 600px) {
-      .cta-grid { grid-template-columns: 1fr; }
-      .cta-contato { padding: 28px 20px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre — Syntax Code</title>
+    <meta name="description" content="Conheça a Syntax Code: engenharia de software para empresas e profissionais, com produtos próprios, sistemas sob medida, automações e integrações.">
+    <meta name="theme-color" content="#0A0F1C">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <header id="cabecalho-site"></header>
 
-  <header class="hero" data-aos="fade-down">
-    <h1><i class="fa-solid fa-user"></i> Sobre o Projeto</h1>
-    <nav id="main-nav"></nav>
-  </header>
+    <main>
+        <section class="hero hero-simples escuro">
+            <div class="largura largura-estreita">
+                <span class="rotulo">sobre</span>
+                <h1>Software feito com cuidado, para quem depende dele todos os dias.</h1>
+                <p class="hero-sub">A Syntax Code é uma empresa de engenharia de software. Criamos produtos próprios e desenvolvemos sistemas sob medida para empresas e profissionais que precisam de tecnologia confiável — sem complicação.</p>
+            </div>
+        </section>
 
-  <main class="container">
+        <section class="secao">
+            <div class="largura dividida">
+                <div class="revelar">
+                    <span class="rotulo">nossa história</span>
+                    <h2 style="font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom: 18px;">Começamos resolvendo problemas reais.</h2>
+                    <div class="texto-longo">
+                        <p>A Syntax Code nasceu da criação de ferramentas para tarefas do dia a dia: organizar arquivos, automatizar rotinas, integrar sistemas. Cada uma resolvia um problema concreto de alguém.</p>
+                        <p>Desse trabalho surgiu o <strong>Jurix</strong>, um sistema completo de gestão para escritórios de advocacia, com inteligência artificial, acompanhamento de processos no CNJ e proteção de dados desde a concepção.</p>
+                        <p>Hoje mantemos produtos próprios, utilitários gratuitos e projetos sob medida, sempre com a mesma régua de qualidade.</p>
+                    </div>
+                </div>
+                <div class="cartao revelar">
+                    <div class="pessoa">
+                        <span class="pessoa-avatar">GD</span>
+                        <div>
+                            <span class="etiqueta">Fundador</span>
+                            <h3 style="margin: 4px 0 10px;">Gustavo Duran</h3>
+                            <p>Desenvolvedor focado em automação, sistemas desktop e integrações. Responsável pela arquitetura e pelo desenvolvimento dos produtos da Syntax Code — e pelo suporte direto aos clientes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section class="section" data-aos="fade-up">
-      <h2>👨‍💻 Quem sou</h2>
-      <p>
-        Sou <strong>Gustavo Duran</strong>, desenvolvedor apaixonado por tecnologia, automação e criação de ferramentas
-        que resolvem problemas reais do dia a dia.
-      </p>
-      <p>
-        Meu foco é desenvolver soluções simples, eficientes e acessíveis para usuários do Windows,
-        utilizando principalmente <strong>Python</strong> e tecnologias web para criar sistemas práticos e intuitivos.
-      </p>
-      <p>
-        Acredito que softwares bem projetados devem economizar tempo, reduzir complexidade
-        e permitir que as pessoas foquem no que realmente importa.
-      </p>
-    </section>
+        <section class="secao escuro">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">princípios</span>
+                    <h2>O que guia cada linha de código.</h2>
+                </div>
+                <div class="principios revelar">
+                    <div><i class="fa-solid fa-shield-halved"></i><h3>Segurança por padrão</h3><p>Controle de acesso, auditoria, assinatura digital e criptografia desde o início do projeto.</p></div>
+                    <div><i class="fa-solid fa-user-lock"></i><h3>Privacidade</h3><p>Dados dos clientes ficam com você. Quando algo precisa sair, sai apenas o necessário — e protegido.</p></div>
+                    <div><i class="fa-solid fa-vial-circle-check"></i><h3>Qualidade verificável</h3><p>Testes automatizados, instaladores conferidos e atualizações assinadas.</p></div>
+                    <div><i class="fa-solid fa-comments"></i><h3>Clareza</h3><p>Escopo, prazos e custos explicados sem jargão. Você sabe o que está contratando.</p></div>
+                </div>
+            </div>
+        </section>
 
-    <section class="section dark" data-aos="fade-up">
-      <h2>🚀 Sobre o Duran Labs</h2>
-      <p>
-        O <strong>Duran Labs</strong> é um projeto dedicado ao desenvolvimento de utilitários e aplicações
-        voltadas para produtividade e automação.
-      </p>
-      <p>
-        Os aplicativos publicados aqui são criados com o objetivo de facilitar tarefas do dia a dia,
-        melhorar fluxos de trabalho e oferecer ferramentas úteis para profissionais e usuários comuns.
-      </p>
-      <p>
-        Todos os softwares são distribuídos gratuitamente e recebem melhorias contínuas
-        baseadas em testes, feedbacks e evolução tecnológica.
-      </p>
-    </section>
+        <section class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">o que entregamos</span>
+                    <h2>Três formas de trabalhar com a Syntax Code.</h2>
+                </div>
+                <div class="grade grade-3">
+                    <article class="cartao revelar">
+                        <span class="icone-quadro"><i class="fa-solid fa-cube"></i></span>
+                        <h3>Produtos licenciados</h3>
+                        <p>Softwares prontos para usar, com instalação guiada, suporte e atualizações automáticas.</p>
+                        <ul><li>Jurix — gestão jurídica</li></ul>
+                    </article>
+                    <article class="cartao revelar">
+                        <span class="icone-quadro"><i class="fa-solid fa-code"></i></span>
+                        <h3>Projetos sob medida</h3>
+                        <p>Sistemas desktop e web, automações e integrações desenhados para o seu processo.</p>
+                        <ul><li>Levantamento gratuito</li><li>Entregas incrementais</li></ul>
+                    </article>
+                    <article class="cartao revelar">
+                        <span class="icone-quadro"><i class="fa-solid fa-toolbox"></i></span>
+                        <h3>Utilitários gratuitos</h3>
+                        <p>Ferramentas menores para o dia a dia no Windows, disponíveis para download livre.</p>
+                        <ul><li>FileWizard, FileReplacer e outros</li></ul>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <section class="section" data-aos="fade-up">
-      <h2><i class="fa-solid fa-scale-balanced"></i> Projetos em Destaque</h2>
-      <p>
-        Um dos pilares do Duran Labs é o <strong>Sistema Jurídico</strong>,
-        uma aplicação desktop desenvolvida para auxiliar escritórios de advocacia
-        na gestão organizada de clientes e informações.
-      </p>
-      <p>
-        O sistema foi projetado para ser robusto e seguro, oferecendo recursos como gestão de registros,
-        níveis de acesso e backup inteligente, transformando tarefas administrativas em processos ágeis.
-      </p>
-    </section>
+        <section class="secao" style="padding-top: 0;">
+            <div class="largura">
+                <div class="chamada revelar">
+                    <div>
+                        <span class="rotulo" style="color: var(--sinal);">vamos trabalhar juntos?</span>
+                        <h2>Conte o que precisa ser resolvido.</h2>
+                        <p>Um processo repetitivo, um fluxo que poderia ser automatizado ou uma ideia que precisa sair do papel. Respondemos em até 24 horas úteis.</p>
+                    </div>
+                    <div class="acoes">
+                        <a href="discovery.html" class="botao botao-primario"><i class="fa-solid fa-clipboard-list"></i> Iniciar levantamento</a>
+                        <a href="mailto:gustavoduran22@gmail.com" class="botao botao-fantasma"><i class="fa-regular fa-envelope"></i> Enviar e-mail</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <section class="section dark" data-aos="fade-up">
-      <h2>🎯 Missão</h2>
-      <p>
-        Desenvolver ferramentas úteis que aumentem a produtividade das pessoas
-        e tornem tarefas complexas mais simples.
-      </p>
-      <p>
-        Cada aplicativo publicado aqui é resultado de estudo, experimentação
-        e busca constante por soluções práticas que agreguem valor ao usuário final.
-      </p>
-    </section>
-
-    <section class="section" data-aos="fade-up">
-      <h2>🔗 Projeto e Código</h2>
-      <p>
-        Os projetos do Duran Labs são publicados e atualizados através do GitHub.
-        Isso permite transparência no desenvolvimento e facilita a distribuição segura
-        das aplicações.
-      </p>
-      <p>
-        <a class="download-btn" href="https://github.com/GustavoDuranBR" target="_blank">
-          <i class="fa-brands fa-github"></i>
-          Visitar GitHub
-        </a>
-      </p>
-    </section>
-
-    <!-- ── NOVA SEÇÃO: CTA de contratação ── -->
-    <section class="section" data-aos="fade-up">
-      <div class="cta-contato">
-        <h2><i class="fa-solid fa-handshake"></i> Vamos trabalhar juntos?</h2>
-        <p>
-          Se você tem um processo repetitivo, um fluxo de trabalho que poderia ser automatizado
-          ou uma ideia que precisa sair do papel — posso ajudar. Respondo em até 24 horas.
-        </p>
-
-        <div class="cta-grid">
-          <div class="cta-item">
-            <span class="cta-icon">⚡</span>
-            <strong>Automações</strong>
-            <span>Bots, integrações e fluxos automáticos</span>
-          </div>
-          <div class="cta-item">
-            <span class="cta-icon">🖥️</span>
-            <strong>Sistemas Desktop</strong>
-            <span>Aplicações Python para Windows</span>
-          </div>
-          <div class="cta-item">
-            <span class="cta-icon">🔗</span>
-            <strong>Integrações</strong>
-            <span>APIs, webhooks e pipelines de dados</span>
-          </div>
-        </div>
-
-        <div class="cta-btn-row">
-          <a class="download-btn" href="discovery.html">
-            <i class="fa-solid fa-clipboard-list"></i>
-            Iniciar levantamento
-          </a>
-          <a class="btn-secondary" href="mailto:gustavoduran22@gmail.com">
-            <i class="fa-solid fa-envelope"></i>
-            Enviar e-mail direto
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer data-aos="fade-up"></footer>
-
-  <script src="components.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
-
+    <footer id="rodape-site"></footer>
+    <script src="components.js"></script>
 </body>
+
 </html>

@@ -2,54 +2,67 @@
   {
     "id": "juridico",
     "titulo": "Jurix",
+    "rotulo": "Gestão jurídica",
     "icone": "fa-scale-balanced",
-    "versao": "v2.0.0",
-    "descricao": "Software SaaS Desktop de Alta Performance. Inclui Copiloto Jurídico IA, Radar DataJud, Automação de Documentos e licenciamento em Tiers.",
+    "versao": "v2.1.0",
+    "categoria": "produto",
+    "resumo": "Sistema desktop para escritórios de advocacia: clientes, processos, prazos, documentos automáticos, Radar CNJ e copiloto de IA com proteção de dados.",
     "detalhes_url": "sistema-juridico.html",
-    "download_url": "https://github.com/GustavoDuranBR/duranapps/releases/download/v2.0.0/Instalador_Jurix_v2.exe"
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.0/Instalador_Jurix_v2.1.0.exe",
+    "manual_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.0/Manual_Instalacao_Jurix_v2.1.0.pdf"
+  },
+  {
+    "id": "poemarkethelper",
+    "titulo": "PoE Market Helper",
+    "rotulo": "Games",
+    "icone": "fa-coins",
+    "versao": "v0.9.1",
+    "categoria": "utilitario",
+    "resumo": "Precificação de itens, leitura de baús e busca avançada no mercado de Path of Exile 1 e 2, com tradução PT-BR ⇄ EN.",
+    "detalhes_url": "poemarkethelper.html",
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/PoeMarketHelper_Setup.exe"
   },
   {
     "id": "pytubepro",
     "titulo": "PyTubePRO",
-    "icone": "fa-download",
+    "rotulo": "Mídia",
+    "icone": "fa-circle-play",
     "versao": "v1.0",
-    "descricao": "Poderoso downloader de vídeos e áudios do YouTube. Suporta 4K e MP3.",
+    "categoria": "utilitario",
+    "resumo": "Baixe vídeos em até 4K ou extraia o áudio em MP3, com interface limpa e sem anúncios.",
     "detalhes_url": "pytubepro.html",
-    "download_url": "https://github.com/GustavoDuranBR/duranapps/releases/download/v2.0.0/PyTubePRO_Setup.exe"
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/PyTubePRO_Setup.exe"
   },
   {
     "id": "filewizard",
     "titulo": "FileWizard",
-    "icone": "fa-circle-info",
+    "rotulo": "Produtividade",
+    "icone": "fa-wand-magic-sparkles",
     "versao": "v1.0",
-    "descricao": "Utilitário para organização inteligente de arquivos baseado em critérios como extensão ou parte do nome, facilitando a estruturação automática de diretórios.",
+    "categoria": "utilitario",
+    "resumo": "Organize arquivos automaticamente em pastas por extensão, por parte do nome ou pelos dois critérios combinados.",
     "detalhes_url": "filewizard.html",
-    "download_url": "https://github.com/GustavoDuranBR/duranapps/releases/download/v2.0.0/FileWizard.exe"
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/FileWizard.exe"
   },
   {
     "id": "filereplacer",
     "titulo": "FileReplacer",
-    "icone": "fa-circle-info",
+    "rotulo": "Produtividade",
+    "icone": "fa-arrows-rotate",
     "versao": "v1.0",
-    "descricao": "Ferramenta desenvolvida para substituir ou distribuir arquivos automaticamente em múltiplas pastas, agilizando tarefas de manutenção e atualização de projetos.",
+    "categoria": "utilitario",
+    "resumo": "Substitua ou distribua o mesmo arquivo em dezenas de subpastas de uma vez, com registro de cada operação.",
     "detalhes_url": "filereplacer.html",
-    "download_url": "https://github.com/GustavoDuranBR/duranapps/releases/download/v2.0.0/Instalar.FileReplacer.exe"
-  },
-  {
-    "id": "poemarkethelper",
-    "titulo": "Poemarket Helper",
-    "icone": "fa-circle-info",
-    "versao": "v0.9.1",
-    "descricao": "Ferramenta desenvolvida para ajudar e facilitar a vida dos jogadores de Path of Exile, oferecendo recursos como gerenciamento de stash, monitoramento de preços e alertas personalizados para itens desejados.",
-    "detalhes_url": "poemarkethelper.html",
-    "download_url": "https://github.com/GustavoDuranBR/duranapps/releases/download/v2.0.0/PoeMarketHelper_Setup.exe"
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/Instalar.FileReplacer.exe"
   },
   {
     "id": "discovery",
-    "titulo": "Discovery Form",
+    "titulo": "Levantamento de projeto",
+    "rotulo": "Serviço",
     "icone": "fa-clipboard-list",
-    "versao": "v1.0",
-    "descricao": "Formulário de levantamento de requisitos para automação. Mapeia modelo de negócio, dores operacionais, perfil técnico e orçamento — e gera um relatório de prioridades com sugestão de MVP.",
+    "versao": null,
+    "categoria": "servico",
+    "resumo": "Dez perguntas rápidas sobre o seu negócio geram um relatório de prioridades com sugestão de primeira entrega.",
     "detalhes_url": "discovery.html",
     "download_url": null
   }

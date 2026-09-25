@@ -4,96 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE Market Helper — Duran Labs</title>
-
+    <title>PoE Market Helper — Syntax Code</title>
+    <meta name="description" content="PoE Market Helper: precificação de itens, leitura de baús e busca avançada no mercado de Path of Exile 1 e 2, com tradução PT-BR para EN.">
+    <meta name="theme-color" content="#0A0F1C">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <header id="cabecalho-site"></header>
 
-    <header class="hero" data-aos="fade-down">
-        <h1><i class="fa-solid fa-coins"></i> PoE Market Helper</h1>
-        <p>A ferramenta definitiva para dominar o Trade nos Consoles e PC no Path of Exile 1 e 2</p>
-
-        <nav id="main-nav"></nav>
-    </header>
-
-    <main class="container">
-
-        <section class="section" data-aos="fade-up">
-            <h2>📋 Sobre o Sistema</h2>
-            <p>
-                O <b>PoE Market Helper</b> foi desenvolvido para eliminar a frustração de negociar itens pelo controle ou lidar com a barreira de idiomas. 
-                Se você joga o game em Português (PT-BR) mas precisa varrer o mercado global, nosso sistema automatiza a tradução, aplica filtros avançados e precifica seus drops em milissegundos com uma interface imersiva.
-            </p>
+    <main>
+        <section class="hero hero-simples escuro">
+            <div class="largura largura-estreita">
+                <div class="produto-hero-marca">
+                    <span class="icone-quadro"><i class="fa-solid fa-coins"></i></span>
+                    <span class="versao" data-versao="poemarkethelper">v0.9.1</span>
+                </div>
+                <span class="rotulo">utilitário · games</span>
+                <h1>PoE Market Helper</h1>
+                <p class="hero-sub">Negocie no mercado de Path of Exile 1 e 2 sem barreira de idioma: tradução PT-BR ⇄ EN, precificação automática e busca avançada — no PC e nos consoles.</p>
+                <div class="acoes">
+                    <a class="botao botao-primario" data-download="poemarkethelper" href="#"><i class="fa-solid fa-download"></i> Baixar para Windows</a>
+                    <a class="botao botao-fantasma" href="#recursos">Ver recursos</a>
+                </div>
+                <p class="aviso-uso"><i class="fa-solid fa-circle-info"></i> Ferramenta independente de fãs, sem vínculo com a Grinding Gear Games. Path of Exile é marca da Grinding Gear Games.</p>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2>🧠 Motor de Leitura de Tiers e Precificação de Baús</h2>
-            
-            <p style="color: #ffcc00; font-weight: bold; border-left: 4px solid #ffcc00; padding-left: 10px;">
-                <i class="fa-solid fa-bolt"></i> Sistema Híbrido: Suporte estrutural nativo ao Path of Exile 1 e Path of Exile 2
-            </p>
-            
-            <p>
-                Esqueça o trabalho manual de verificar *stash tab* por *stash tab*. O nosso motor exclusivo utiliza Expressões Regulares (Regex) para analisar a qualidade dos seus itens e comparar com o mercado, poupando seu tempo para focar no End-Game.
-            </p>
-            <ul>
-                <li><b>Gestão de Baú (Stash Tabs):</b> Leia abas inteiras da sua conta com um clique, separando automaticamente itens valiosos do "lixo".</li>
-                <li><b>Dicionário Bilíngue GGG:</b> Sincronizado em tempo real, pesquisa e traduz itens e atributos do PT-BR para o EN-US sem erros de sintaxe.</li>
-                <li><b>Reconhecimento de Meta Atributos:</b> Identifica os Tiers exatos de Vida, Resistências e Dano para precificar os seus Raros com o valor mais justo.</li>
-            </ul>
+        <section id="recursos" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">leitura de tiers e baús</span>
+                    <h2>Precifique seus drops em segundos.</h2>
+                    <p>Um motor de leitura com expressões regulares analisa a qualidade dos itens e compara com o mercado — menos trabalho manual, mais tempo no end-game.</p>
+                </div>
+                <div class="grade grade-3">
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-box-archive"></i></span><h3>Gestão de baús</h3><p>Leia abas inteiras da conta com um clique e separe o que tem valor do que não tem.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-language"></i></span><h3>Dicionário bilíngue</h3><p>Traduz itens e atributos do PT-BR para o EN-US sem erros de sintaxe na busca.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-ranking-star"></i></span><h3>Tiers de atributos</h3><p>Identifica os tiers de vida, resistências e dano para precificar os itens raros com justiça.</p></article>
+                </div>
+            </div>
         </section>
 
-        <section class="section" data-aos="fade-up">
-            <h2>📈 Busca Avançada, Sniping e Flip</h2>
-            <p>
-                Encontre as melhores ofertas e calcule suas margens de lucro com uma interface desenvolvida para replicar a exata experiência do site oficial de trade da Grinding Gear Games.
-            </p>
-            <ul>
-                <li><b>Cards Nativos:</b> Visualização detalhada com Sockets, Implicits, Explicits (com cores oficiais) e status de Corrupção.</li>
-                <li><b>Calculadora de Profit:</b> Calcule lucros de Flipping instantaneamente com base na conversão em tempo real da cotação do Divine/Chaos.</li>
-                <li><b>Watchlist e Whisper:</b> Monitore seus itens desejados e gere a mensagem de compra (Whisper) pronta para ser colada no app do console ou PC.</li>
-            </ul>
+        <section class="secao secao-branca">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">busca, sniping e flip</span>
+                    <h2>A experiência do trade oficial, com cálculo de lucro.</h2>
+                </div>
+                <div class="grade grade-3">
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-id-card"></i></span><h3>Cartões fiéis ao jogo</h3><p>Sockets, implícitos, explícitos com as cores oficiais e status de corrupção.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-calculator"></i></span><h3>Calculadora de lucro</h3><p>Margens de flip pela cotação atual de Divine e Chaos.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-comment-dots"></i></span><h3>Watchlist e whisper</h3><p>Acompanhe itens desejados e gere a mensagem de compra pronta para colar.</p></article>
+                </div>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2>🛡️ 100% Seguro e Dentro das Regras</h2>
-            <p>
-                Desenvolvido por e para jogadores, com estrito respeito aos Termos de Serviço e limites de requisição (Rate Limits) do jogo.
-            </p>
-            <ul>
-                <li><b>Proteção Antibloqueio (Erro 429):</b> Pausas furtivas e escalonadas que leem os cabeçalhos da API para evitar bloqueios de IP.</li>
-                <li><b>Autenticação Segura Local:</b> A autenticação do seu baú é salva apenas no seu PC, sem enviar chaves (POESESSID) para bancos de dados em nuvem.</li>
-                <li><b>Livre de Injeção:</b> Opera como um aplicativo independente (Executável Local), sem ler processos ou modificar a memória do seu game.</li>
-            </ul>
+        <section class="secao escuro">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">responsável</span>
+                    <h2>Feito por jogadores, dentro das regras.</h2>
+                    <p>Respeita os termos de serviço e os limites de requisição da API do jogo.</p>
+                </div>
+                <div class="principios revelar" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+                    <div><i class="fa-solid fa-traffic-light"></i><h3>Limites respeitados</h3><p>Pausas escalonadas que leem os cabeçalhos da API e evitam bloqueios (erro 429).</p></div>
+                    <div><i class="fa-solid fa-key"></i><h3>Credencial só no seu PC</h3><p>A autenticação do baú (POESESSID) fica salva localmente; nada vai para servidores externos.</p></div>
+                    <div><i class="fa-solid fa-shield-halved"></i><h3>Sem injeção</h3><p>Aplicativo independente: não lê processos nem altera a memória do jogo.</p></div>
+                </div>
+            </div>
         </section>
 
-        <section class="section" data-aos="fade-up">
-            <h2>⬇ Download</h2>
-            <p>Baixe a versão mais recente e transforme o jeito como você interage com o mercado de Wraeclast hoje mesmo.</p>
-            
-            <a id="btn-download-dinamico" data-app-id="poemarkethelper" class="download-btn" href="#">
-                <i class="fa-solid fa-download"></i>
-                Baixar Instalador
-            </a>
+        <section class="secao">
+            <div class="largura">
+                <div class="chamada revelar">
+                    <div>
+                        <span class="rotulo" style="color: var(--sinal);">download</span>
+                        <h2>PoE Market Helper para Windows</h2>
+                        <p>Instalador completo. Gratuito.</p>
+                    </div>
+                    <div class="acoes">
+                        <a class="botao botao-primario" data-download="poemarkethelper" href="#"><i class="fa-solid fa-download"></i> Baixar instalador</a>
+                    </div>
+                </div>
+            </div>
         </section>
-
     </main>
 
-    <footer data-aos="fade-up"></footer>
-
+    <footer id="rodape-site"></footer>
     <script src="components.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    </script>
-
 </body>
+
 </html>

@@ -4,100 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyTubePRO — Duran Labs</title>
-
+    <title>PyTubePRO — Syntax Code</title>
+    <meta name="description" content="PyTubePRO: baixe vídeos em até 4K ou extraia o áudio em MP3, com interface limpa e sem anúncios.">
+    <meta name="theme-color" content="#0A0F1C">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <header id="cabecalho-site"></header>
 
-    <header class="hero" data-aos="fade-down">
-        <h1>📥 PyTubePRO</h1>
-        <p>Download de vídeos e áudios do YouTube com máxima qualidade</p>
-
-        <nav id="main-nav"></nav>
-    </header>
-
-    <main class="container">
-
-        <section class="section" data-aos="fade-up">
-            <h2>📋 Sobre o Aplicativo</h2>
-            <p>
-                O <b>PyTubePRO</b> é uma ferramenta robusta e intuitiva projetada para facilitar a extração de conteúdo
-                multimídia do YouTube diretamente para o seu computador.
-            </p>
-            <p>
-                Diferente de conversores online cheios de anúncios, o PyTubePRO oferece uma experiência limpa,
-                privada e profissional, garantindo que você obtenha sempre a melhor resolução disponível, inclusive em 4K.
-            </p>
+    <main>
+        <section class="hero hero-simples escuro">
+            <div class="largura largura-estreita">
+                <div class="produto-hero-marca">
+                    <span class="icone-quadro"><i class="fa-solid fa-circle-play"></i></span>
+                    <span class="versao" data-versao="pytubepro">v1.0</span>
+                </div>
+                <span class="rotulo">utilitário · mídia</span>
+                <h1>PyTubePRO</h1>
+                <p class="hero-sub">Baixe vídeos na melhor qualidade disponível — até 4K — ou extraia só o áudio em MP3. Sem anúncios, sem conversores online.</p>
+                <div class="acoes">
+                    <a class="botao botao-primario" data-download="pytubepro" href="#"><i class="fa-solid fa-download"></i> Baixar para Windows</a>
+                    <a class="botao botao-fantasma" href="#recursos">Ver recursos</a>
+                </div>
+                <p class="aviso-uso"><i class="fa-solid fa-circle-info"></i> Use apenas para conteúdos que você tem direito de baixar, respeitando os termos da plataforma e os direitos autorais.</p>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2>⚙️ Como Funciona</h2>
-            <p>O processo de download foi simplificado para apenas quatro passos:</p>
-            <ul>
-                <li>Cole o link do vídeo desejado no campo de entrada.</li>
-                <li>Clique em "Verificar Disponibilidade" para carregar as resoluções.</li>
-                <li>Escolha entre baixar o vídeo completo ou apenas o áudio em MP3.</li>
-                <li>Selecione a pasta de destino e inicie o download em alta velocidade.</li>
-            </ul>
+        <section id="recursos" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">recursos</span>
+                    <h2>Qualidade máxima, sem complicação.</h2>
+                </div>
+                <div class="grade grade-3">
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-film"></i></span><h3>Até 4K</h3><p>Escolha a resolução — 720p, 1080p ou 4K — mantendo a fidelidade do original.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-music"></i></span><h3>Áudio em MP3</h3><p>Conversão automática para MP3 em 192 kbps, pronta para ouvir.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-gauge-high"></i></span><h3>Progresso em tempo real</h3><p>Barra de progresso com a velocidade do download; a interface nunca trava.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-layer-group"></i></span><h3>Áudio e vídeo unidos</h3><p>O FFmpeg junta as faixas de áudio e vídeo sem perda de qualidade.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-moon"></i></span><h3>Modo escuro</h3><p>Interface moderna, com tema claro e escuro.</p></article>
+                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-user-shield"></i></span><h3>Privado</h3><p>Roda no seu computador: sem cadastro, sem anúncios e sem enviar seus dados a terceiros.</p></article>
+                </div>
+            </div>
         </section>
 
-        <section class="section" data-aos="fade-up">
-            <h2>🚀 Principais Funcionalidades</h2>
-            <ul>
-                <li>Downloads em alta resolução (720p, 1080p, 4K) mantendo a fidelidade original.</li>
-                <li>Conversão automática para MP3 de alta qualidade (192kbps).</li>
-                <li>Interface moderna com suporte a modo escuro (Dark Mode).</li>
-                <li>Barra de progresso detalhada com velocidade de download em tempo real.</li>
-                <li>Processamento inteligente via FFmpeg para união perfeita de áudio e vídeo.</li>
-            </ul>
+        <section class="secao secao-branca">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">como funciona</span>
+                    <h2>Quatro passos.</h2>
+                </div>
+                <ol class="passos revelar">
+                    <li><h3>Cole o link</h3><p>Copie o endereço do vídeo e cole no campo de entrada.</p></li>
+                    <li><h3>Verifique</h3><p>Clique em "Verificar disponibilidade" para listar as resoluções.</p></li>
+                    <li><h3>Escolha o formato</h3><p>Vídeo completo na resolução desejada, ou apenas o áudio em MP3.</p></li>
+                    <li><h3>Baixe</h3><p>Selecione a pasta de destino e acompanhe o download.</p></li>
+                </ol>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2>📊 Tecnologia de Ponta</h2>
-            <p>
-                Utilizamos as bibliotecas mais avançadas do mercado para garantir que o download nunca falhe.
-            </p>
-            <ul>
-                <li>Motor de busca e extração atualizado frequentemente.</li>
-                <li>Suporte a cookies para contornar restrições de rede.</li>
-                <li>Multithreading: a interface nunca trava durante o processamento.</li>
-            </ul>
+        <section class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">tecnologia</span>
+                    <h2>Construído sobre ferramentas consolidadas.</h2>
+                </div>
+                <div class="chips revelar">
+                    <span class="chip">Python<small>base da aplicação</small></span>
+                    <span class="chip">CustomTkinter<small>interface</small></span>
+                    <span class="chip">yt-dlp<small>motor de download</small></span>
+                    <span class="chip">FFmpeg<small>áudio e vídeo</small></span>
+                    <span class="chip">Threading<small>interface fluida</small></span>
+                </div>
+            </div>
         </section>
 
-        <section class="section" data-aos="fade-up">
-            <h2>🛠 Tecnologias Utilizadas</h2>
-            <ul>
-                <li><b>Python</b> — Base lógica da aplicação.</li>
-                <li><b>CustomTkinter</b> — Interface gráfica moderna e responsiva.</li>
-                <li><b>yt-dlp</b> — O motor de download mais poderoso da atualidade.</li>
-                <li><b>FFmpeg</b> — Processamento profissional de áudio e vídeo.</li>
-                <li><b>Threading</b> — Garantia de performance e fluidez.</li>
-            </ul>
+        <section class="secao" style="padding-top: 0;">
+            <div class="largura">
+                <div class="chamada revelar">
+                    <div>
+                        <span class="rotulo" style="color: var(--sinal);">download</span>
+                        <h2>PyTubePRO para Windows</h2>
+                        <p>Instalador completo, com todas as dependências incluídas. Gratuito.</p>
+                    </div>
+                    <div class="acoes">
+                        <a class="botao botao-primario" data-download="pytubepro" href="#"><i class="fa-solid fa-download"></i> Baixar instalador</a>
+                    </div>
+                </div>
+            </div>
         </section>
-
-        <section class="section" data-aos="fade-up">
-            <h2>⬇ Download</h2>
-            <p>Obtenha o instalador completo do PyTubePRO (inclui todas as dependências).</p>
-            <a id="btn-download-dinamico" data-app-id="pytubepro" class="download-btn" href="#">
-                <i class="fa-solid fa-download"></i>
-                Baixar PyTubePRO
-            </a>
-        </section>
-
     </main>
 
-    <footer data-aos="fade-up"></footer>
-
+    <footer id="rodape-site"></footer>
     <script src="components.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
-    </script>
-
 </body>
+
 </html>

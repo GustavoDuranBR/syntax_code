@@ -1,0 +1,17 @@
+{
+  "produto": "jurix",
+  "versao": "2.1.0",
+  "publicada": "2026-09-25",
+  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.0/Instalador_Jurix_v2.1.0.exe",
+  "sha256": "367e8de8e58e1ef6b577bedd807e1117895cf5b6b3d1ea6f078dd2c33d83c6e9",
+  "tamanho": 40601688,
+  "notas": [
+    "Licença com assinatura digital e validade, com aviso antes do vencimento.",
+    "Agenda completa integrada ao Kanban: prazos, audiências e reuniões.",
+    "Tela de Processos com consulta ao CNJ e Radar mais estável.",
+    "Copiloto de IA com proteção de dados reforçada (LGPD).",
+    "Atualizações automáticas pelo próprio Jurix."
+  ],
+  "obrigatoria": false,
+  "assinatura": "Rspr4FmNH4tlIuugus8m2F8Ur09tpOeQbQkVvf9qwyxNsSLcbn6-0JtKRHqitXefiMdc9ySXZBL51cUP1Q3JDA"
+}

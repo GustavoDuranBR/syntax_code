@@ -4,346 +4,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery Form — Duran Labs</title>
+    <title>Levantamento de projeto — Syntax Code</title>
+    <meta name="description" content="Responda 10 perguntas rápidas sobre o seu negócio e receba um relatório de prioridades de automação com sugestão de primeira entrega.">
+    <meta name="theme-color" content="#0A0F1C">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
     <style>
-        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--primary); transition: width .5s ease; z-index: 999; box-shadow: 0 0 8px var(--primary); }
+        .progresso { position: sticky; top: 70px; z-index: 40; height: 3px; background: var(--borda); }
+        .progresso span { display: block; height: 100%; width: 0; background: var(--acento); transition: width .5s ease; }
+        .passo-info { font-family: var(--mono); font-size: 13px; color: var(--texto-claro-suave); margin-top: 18px; min-height: 20px; }
+        .passo-info strong { color: var(--sinal); font-weight: 500; }
         .screen { display: none; }
-        .screen.active { display: block; }
-        .eyebrow { font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; }
-        .question { font-family: 'Orbitron', sans-serif; font-size: clamp(18px, 3vw, 26px); font-weight: 500; color: var(--text-main); margin-bottom: 10px; line-height: 1.3; }
-        .hint { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; padding-left: 12px; border-left: 2px solid var(--border); }
-        .field-group { margin-bottom: 16px; }
-        .field-label { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; display: block; }
-        .options { display: grid; gap: 10px; margin-bottom: 28px; }
+        .screen.active { display: block; animation: surgir .35s ease; }
+        @keyframes surgir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .painel { background: var(--branco); border: 1px solid var(--borda); border-radius: 18px; padding: 40px; box-shadow: var(--sombra); }
+        .pergunta { font-size: clamp(1.35rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 10px; }
+        .dica { color: var(--texto-suave); margin-bottom: 28px; padding-left: 14px; border-left: 2px solid var(--borda); }
+        .campo { margin-bottom: 16px; }
+        .campo label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .text-field { width: 100%; padding: 13px 15px; font-family: var(--corpo); font-size: 15px; color: var(--texto); background: var(--papel); border: 1px solid var(--borda); border-radius: 10px; outline: none; resize: vertical; transition: border-color .15s, box-shadow .15s; }
+        .text-field:focus { border-color: var(--acento); box-shadow: 0 0 0 3px rgba(61, 90, 254, .15); background: var(--branco); }
+        .options { display: grid; gap: 10px; margin-bottom: 8px; }
         .options.cols-2 { grid-template-columns: 1fr 1fr; }
         .option { position: relative; cursor: pointer; }
         .option input { position: absolute; opacity: 0; width: 0; height: 0; }
-        .option-label { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; font-size: 14px; color: var(--text-secondary); transition: border-color .15s, background .15s, transform .1s; cursor: pointer; user-select: none; }
-        .option-label .opt-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
-        .option-label .opt-text { flex: 1; }
-        .option-label .opt-text small { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-        .option-label .check { width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 50%; flex-shrink: 0; transition: all .15s; display: flex; align-items: center; justify-content: center; }
-        .option:hover .option-label { border-color: var(--primary); background: var(--bg-section); transform: translateY(-1px); }
-        .option input:checked + .option-label { border-color: var(--primary); background: var(--bg-section); color: var(--text-main); }
-        .option input:checked + .option-label .check { background: var(--primary); border-color: var(--primary); }
-        .option input:checked + .option-label .check::after { content: ''; width: 5px; height: 5px; background: #000; border-radius: 50%; }
-        .option input[type="checkbox"] + .option-label .check { border-radius: 3px; }
-        .option input[type="checkbox"]:checked + .option-label .check { border-radius: 3px; }
-        .option input[type="checkbox"]:checked + .option-label .check::after { content: '✓'; color: #000; font-size: 10px; font-weight: 700; width: auto; height: auto; background: transparent; border-radius: 0; }
-        .text-field { width: 100%; padding: 14px 16px; font-family: 'Roboto', sans-serif; font-size: 14px; color: var(--text-main); background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; outline: none; resize: vertical; transition: border-color .15s; }
-        .text-field:focus { border-color: var(--primary); }
-        .text-field::placeholder { color: var(--text-muted); }
+        .option-label { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--papel); border: 1px solid var(--borda); border-radius: 12px; font-size: 15px; color: var(--texto); transition: border-color .15s, background .15s; user-select: none; }
+        .opt-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--branco); border: 1px solid var(--borda); color: var(--acento); display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .opt-text { flex: 1; font-weight: 500; }
+        .opt-text small { display: block; font-size: 13px; font-weight: 400; color: var(--texto-suave); margin-top: 2px; }
+        .check { width: 18px; height: 18px; border: 1.5px solid #C3C9D4; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+        .option:hover .option-label { border-color: #B8C3FF; }
+        .option input:focus-visible + .option-label { outline: 2px solid var(--acento); outline-offset: 2px; }
+        .option input:checked + .option-label { border-color: var(--acento); background: var(--acento-suave); }
+        .option input:checked + .option-label .check { background: var(--acento); border-color: var(--acento); }
+        .option input:checked + .option-label .check::after { content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+        .option input[type="checkbox"] + .option-label .check { border-radius: 5px; }
+        .option input[type="checkbox"]:checked + .option-label .check::after { content: '✓'; width: auto; height: auto; background: none; color: #fff; font-size: 11px; font-weight: 700; }
         .btn-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
-        .btn-back { background: none; border: 1px solid var(--border); border-radius: 8px; color: var(--text-muted); font-family: 'Roboto', sans-serif; font-size: 14px; padding: 12px 18px; cursor: pointer; transition: border-color .15s, color .15s; }
-        .btn-back:hover { border-color: var(--primary); color: var(--text-main); }
-        .result-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
-        .result-card-title { font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary); margin-bottom: 16px; }
-        .result-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+        .btn-row .botao-avancar { cursor: pointer; }
+        .btn-back { background: none; border: 1px solid var(--borda); border-radius: 10px; color: var(--texto-suave); font-family: var(--corpo); font-size: 15px; min-height: 48px; padding: 0 18px; cursor: pointer; }
+        .btn-back:hover { border-color: var(--texto-suave); color: var(--texto); }
+        .botao-erro { background: var(--perigo) !important; }
+        .metas { display: flex; gap: 24px; flex-wrap: wrap; margin: 20px 0 30px; color: var(--texto-suave); font-size: 15px; }
+        .metas i { color: var(--acento); margin-right: 8px; }
+        .result-card { background: var(--branco); border: 1px solid var(--borda); border-radius: 14px; padding: 26px; margin-bottom: 16px; }
+        .result-card-title { font-family: var(--mono); font-size: 13px; color: var(--acento); margin-bottom: 16px; }
+        .result-card-title::before { content: "// "; opacity: .6; }
+        .result-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--borda); font-size: 14.5px; }
         .result-row:last-child { border-bottom: none; padding-bottom: 0; }
-        .result-row .lbl { color: var(--text-muted); flex-shrink: 0; }
-        .result-row .val { color: var(--text-main); font-weight: 500; text-align: right; }
+        .result-row .lbl { color: var(--texto-suave); flex-shrink: 0; }
+        .result-row .val { font-weight: 500; text-align: right; }
         .prio-list { display: grid; gap: 8px; }
-        .prio-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--bg-section); border-radius: 8px; font-size: 13px; }
-        .prio-rank { width: 26px; height: 26px; background: var(--primary); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 11px; flex-shrink: 0; }
-        .prio-rank.low { background: var(--border); color: var(--text-muted); }
-        .arq-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+        .prio-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; background: var(--papel); border-radius: 10px; font-size: 14.5px; }
+        .prio-rank { width: 28px; height: 28px; background: var(--acento); color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 13px; flex-shrink: 0; }
+        .prio-rank.low { background: var(--borda); color: var(--texto-suave); }
+        .prio-item small { color: var(--texto-suave); font-size: 13px; }
+        .arq-item { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--borda); font-size: 14.5px; }
         .arq-item:last-child { border-bottom: none; }
-        .arq-item .arq-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-        .arq-item strong { display: block; color: var(--text-main); margin-bottom: 2px; }
-        .arq-item span { color: var(--text-muted); line-height: 1.5; }
-        .mvp-box { background: var(--bg-section); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.7; color: var(--text-secondary); }
-        .mvp-quote { margin-top: 12px; font-size: 13px; color: var(--primary); font-style: italic; }
-        .send-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: var(--primary); color: #000; border: none; border-radius: 8px; font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer; margin-top: 20px; transition: background .2s, transform .1s, opacity .2s; }
-        .send-btn:hover { background: var(--primary-hover); transform: scale(1.01); }
-        .send-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-        .restart-btn { display: block; width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text-muted); font-family: 'Roboto', sans-serif; font-size: 13px; cursor: pointer; margin-top: 10px; transition: border-color .15s, color .15s; }
-        .restart-btn:hover { border-color: var(--primary); color: var(--text-main); }
-        .send-status { display: none; padding: 14px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; margin-top: 12px; text-align: center; }
-        .send-status.success { display: block; background: rgba(0,230,118,.1); border: 1px solid var(--primary); color: var(--primary); }
-        .send-status.error { display: block; background: rgba(198,40,40,.1); border: 1px solid #c62828; color: #ef9a9a; }
-        .footer-contact { margin-top: 8px; font-size: 13px; color: var(--text-muted); }
-        .footer-contact a { color: var(--primary); text-decoration: none; }
-        .footer-contact a:hover { text-decoration: underline; }
-        .step-info { margin-top: 8px; font-size: 13px; color: rgba(255,255,255,.6); }
-        .step-info strong { color: var(--primary); }
-        @media (max-width: 520px) { .options.cols-2 { grid-template-columns: 1fr; } }
+        .arq-item > i { color: var(--acento); width: 20px; text-align: center; margin-top: 4px; }
+        .arq-item strong { display: block; margin-bottom: 2px; }
+        .arq-item span { color: var(--texto-suave); }
+        .mvp-box { background: var(--acento-suave); border-left: 3px solid var(--acento); border-radius: 10px; padding: 18px; line-height: 1.7; }
+        .mvp-quote { margin-top: 12px; font-size: 14px; color: var(--acento-hover); font-style: italic; }
+        .send-btn { width: 100%; margin-top: 8px; }
+        .send-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+        .restart-btn { width: 100%; margin-top: 10px; }
+        .send-status { display: none; padding: 14px 16px; border-radius: 10px; font-size: 14.5px; margin-top: 12px; text-align: center; }
+        .send-status.success { display: block; background: #E7F7F4; border: 1px solid var(--sinal); color: #0F766E; }
+        .send-status.error { display: block; background: #FDECEB; border: 1px solid var(--perigo); color: var(--perigo); }
+        .privacidade { margin-top: 16px; font-size: 13px; color: var(--texto-suave); text-align: center; }
+        @media (max-width: 560px) { .options.cols-2 { grid-template-columns: 1fr; } .painel { padding: 26px 18px; } }
     </style>
 </head>
 
 <body>
-    <div class="progress-bar" id="progressBar"></div>
+    <header id="cabecalho-site"></header>
+    <div class="progresso"><span id="progressBar"></span></div>
 
-    <header class="hero" data-aos="fade-down">
-        <h1><i class="fa-solid fa-clipboard-list"></i> Discovery Form</h1>
-        <p>Levantamento de requisitos para automação personalizada.</p>
-        <div class="step-info" id="stepInfo"></div>
-        <nav id="main-nav"></nav>
-    </header>
-
-    <main class="container">
-
-        <!-- 0: BOAS-VINDAS -->
-        <div class="screen active" id="screen-0">
-            <section class="section" data-aos="fade-up">
-                <h2><i class="fa-solid fa-satellite-dish"></i> Bem-vindo</h2>
-                <p>Antes de qualquer linha de código, preciso entender como você trabalha, onde perde tempo e o que faz o seu negócio girar. Isso garante que a automação seja precisa — não genérica.</p>
-                <br>
-                <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:28px;">
-                    <span style="font-size:14px;color:var(--text-muted)"><i class="fa-regular fa-clock" style="color:var(--primary);margin-right:6px"></i>~5 minutos</span>
-                    <span style="font-size:14px;color:var(--text-muted)"><i class="fa-solid fa-list-check" style="color:var(--primary);margin-right:6px"></i>10 perguntas</span>
-                    <span style="font-size:14px;color:var(--text-muted)"><i class="fa-solid fa-envelope" style="color:var(--primary);margin-right:6px"></i>Confirmação por e-mail</span>
-                </div>
-                <a class="download-btn" style="display:inline-block;cursor:pointer;" onclick="goTo(1)">
-                    <i class="fa-solid fa-play"></i> Iniciar levantamento
-                </a>
-            </section>
-        </div>
-
-        <!-- 1: IDENTIFICAÇÃO (nome + e-mail) -->
-        <div class="screen" id="screen-1">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Identificação</div>
-                <h2 class="question">Qual é o seu nome, negócio e e-mail?</h2>
-                <p class="hint">Usaremos o e-mail para enviar a confirmação do levantamento e entrar em contato sobre o projeto.</p>
-                <div class="field-group">
-                    <label class="field-label">Nome e negócio *</label>
-                    <input type="text" class="text-field" id="q1_nome" placeholder="Ex: Ana Silva — Ateliê da Ana">
-                </div>
-                <div class="field-group">
-                    <label class="field-label">E-mail para contato *</label>
-                    <input type="email" class="text-field" id="q1_email" placeholder="Ex: ana@email.com">
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(0)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(1)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 2: TIPO -->
-        <div class="screen" id="screen-2">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Modelo de negócio</div>
-                <h2 class="question">Como o seu produto ou serviço funciona?</h2>
-                <p class="hint">Cada modelo tem gargalos diferentes. Isso define a base da arquitetura de automação.</p>
-                <div class="options">
-                    <label class="option"><input type="radio" name="tipo" value="artesanal"><span class="option-label"><span class="opt-icon">🎨</span><span class="opt-text">Faço / produzo eu mesmo<small>Artesanal, costura, alimentos, manufatura própria</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="tipo" value="revenda"><span class="option-label"><span class="opt-icon">📦</span><span class="opt-text">Revendo produtos prontos<small>Compro e revendo, dropshipping</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="tipo" value="servico"><span class="option-label"><span class="opt-icon">🛠️</span><span class="opt-text">Presto serviços<small>Consultoria, design, reparos, aulas</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="tipo" value="misto"><span class="option-label"><span class="opt-icon">🔀</span><span class="opt-text">Misto — produto + serviço<small>Ex: vendo produto e ofereço instalação</small></span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(1)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(2)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 3: CANAIS -->
-        <div class="screen" id="screen-3">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Canais de venda</div>
-                <h2 class="question">Onde você vende hoje?</h2>
-                <p class="hint">Selecione todos que usa. Cada canal tem uma lógica de automação diferente.</p>
-                <div class="options">
-                    <label class="option"><input type="checkbox" name="canal" value="shopee"><span class="option-label"><span class="opt-icon">🛍️</span><span class="opt-text">Shopee</span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="canal" value="mercadolivre"><span class="option-label"><span class="opt-icon">🟡</span><span class="opt-text">Mercado Livre</span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="canal" value="instagram"><span class="option-label"><span class="opt-icon">📸</span><span class="opt-text">Instagram / Facebook</span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="canal" value="whatsapp"><span class="option-label"><span class="opt-icon">💬</span><span class="opt-text">WhatsApp direto</span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="canal" value="site"><span class="option-label"><span class="opt-icon">🌐</span><span class="opt-text">Site próprio / loja virtual</span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="canal" value="presencial"><span class="option-label"><span class="opt-icon">🏪</span><span class="opt-text">Presencial / feiras</span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(2)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(3)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 4: VOLUME -->
-        <div class="screen" id="screen-4">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Escala atual</div>
-                <h2 class="question">Quantos pedidos você recebe por mês?</h2>
-                <p class="hint">Define se a solução precisa ser leve ou robusta. Estimativa já é suficiente.</p>
-                <div class="options cols-2">
-                    <label class="option"><input type="radio" name="volume" value="1-10"><span class="option-label"><span class="opt-icon">🌱</span><span class="opt-text">1 a 10<small>Começando</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="volume" value="11-50"><span class="option-label"><span class="opt-icon">📈</span><span class="opt-text">11 a 50<small>Crescendo</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="volume" value="51-200"><span class="option-label"><span class="opt-icon">🚀</span><span class="opt-text">51 a 200<small>Consolidado</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="volume" value="200+"><span class="option-label"><span class="opt-icon">🏭</span><span class="opt-text">200+<small>Alto volume</small></span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(3)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(4)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 5: DORES -->
-        <div class="screen" id="screen-5">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Dores operacionais</div>
-                <h2 class="question">O que mais consome o seu tempo hoje?</h2>
-                <p class="hint">Selecione até 3. Define onde a automação gera mais impacto imediato.</p>
-                <div class="options">
-                    <label class="option"><input type="checkbox" name="dor" value="divulgacao"><span class="option-label"><span class="opt-icon">📣</span><span class="opt-text">Criar posts e divulgar produtos<small>Fotos, legendas, stories, canais</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="dor" value="atendimento"><span class="option-label"><span class="opt-icon">💬</span><span class="opt-text">Responder clientes<small>Dúvidas, negociação, reclamações</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="dor" value="pedidos"><span class="option-label"><span class="opt-icon">📦</span><span class="opt-text">Controlar pedidos e envios<small>O que saiu, o que está atrasado</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="dor" value="estoque"><span class="option-label"><span class="opt-icon">🗂️</span><span class="opt-text">Controlar estoque / produção<small>Saber o que tem e o que precisa produzir</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="dor" value="financeiro"><span class="option-label"><span class="opt-icon">💰</span><span class="opt-text">Controle financeiro<small>Quanto entrou, quanto gastou, lucro</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="checkbox" name="dor" value="posvenda"><span class="option-label"><span class="opt-icon">⭐</span><span class="opt-text">Pós-venda e avaliações<small>Acompanhar satisfação, pedir avaliação</small></span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(4)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(5)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 6: TECH -->
-        <div class="screen" id="screen-6">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Perfil técnico</div>
-                <h2 class="question">Qual o nível de conforto com tecnologia de quem vai usar?</h2>
-                <p class="hint">Define a interface — painel web, bot por mensagem, ou completamente automático.</p>
-                <div class="options">
-                    <label class="option"><input type="radio" name="tech" value="zero"><span class="option-label"><span class="opt-icon">📵</span><span class="opt-text">Zero — só usa celular para o básico<small>Interface precisa ser automática ou mínima</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="tech" value="basico"><span class="option-label"><span class="opt-icon">📱</span><span class="opt-text">Básico — usa apps sem dificuldade<small>Consegue clicar em botões e preencher campos</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="tech" value="intermediario"><span class="option-label"><span class="opt-icon">💻</span><span class="opt-text">Intermediário — usa planilhas e Drive<small>Consegue acessar um painel web simples</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="tech" value="avancado"><span class="option-label"><span class="opt-icon">🛠️</span><span class="opt-text">Avançado — tem noção de tecnologia<small>Consegue instalar apps e seguir tutorial</small></span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(5)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(6)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 7: SUPORTE -->
-        <div class="screen" id="screen-7">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Disponibilidade de suporte</div>
-                <h2 class="question">Tem suporte técnico disponível quando algo der errado?</h2>
-                <p class="hint">Define o nível de resiliência que o sistema precisa ter.</p>
-                <div class="options">
-                    <label class="option"><input type="radio" name="suporte" value="sempre"><span class="option-label"><span class="opt-icon">🟢</span><span class="opt-text">Sim, sempre disponível<small>Consigo resolver qualquer problema rapidamente</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="suporte" value="as_vezes"><span class="option-label"><span class="opt-icon">🟡</span><span class="opt-text">Às vezes disponível<small>Demora algumas horas para conseguir ajudar</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="suporte" value="raramente"><span class="option-label"><span class="opt-icon">🔴</span><span class="opt-text">Raramente disponível<small>O sistema precisa se virar sozinho quase sempre</small></span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(6)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(7)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 8: URGÊNCIA -->
-        <div class="screen" id="screen-8">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Prioridade MVP</div>
-                <h2 class="question">O que precisa funcionar primeiro?</h2>
-                <p class="hint">Se pudesse resolver apenas uma coisa agora, qual seria? Define a primeira entrega.</p>
-                <textarea class="text-field" id="q8" rows="4" placeholder="Ex: Quero receber um aviso quando entrar um pedido novo, sem precisar verificar o app manualmente." style="margin-bottom:0"></textarea>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(7)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(8)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 9: ORÇAMENTO -->
-        <div class="screen" id="screen-9">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Investimento</div>
-                <h2 class="question">Qual o orçamento mensal para manter o sistema?</h2>
-                <p class="hint">Inclui servidor, APIs e serviços externos. Define soluções gratuitas ou pagas.</p>
-                <div class="options cols-2">
-                    <label class="option"><input type="radio" name="orc" value="zero"><span class="option-label"><span class="opt-icon">🆓</span><span class="opt-text">R$ 0<small>Só gratuito</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="orc" value="ate50"><span class="option-label"><span class="opt-icon">💵</span><span class="opt-text">Até R$ 50/mês<small>Servidor básico</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="orc" value="ate150"><span class="option-label"><span class="opt-icon">💳</span><span class="opt-text">Até R$ 150/mês<small>APIs + servidor robusto</small></span><span class="check"></span></span></label>
-                    <label class="option"><input type="radio" name="orc" value="flex"><span class="option-label"><span class="opt-icon">📊</span><span class="opt-text">Flexível<small>Depende do retorno</small></span><span class="check"></span></span></label>
-                </div>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(8)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="next(9)"><i class="fa-solid fa-arrow-right"></i> Continuar</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- 10: OBSERVAÇÕES -->
-        <div class="screen" id="screen-10">
-            <section class="section" data-aos="fade-up">
-                <div class="eyebrow">Contexto adicional</div>
-                <h2 class="question">Tem algo importante que preciso saber?</h2>
-                <p class="hint">Rotina, sazonalidade, restrições, planos futuros. Pode ser informal. Opcional.</p>
-                <textarea class="text-field" id="q10" rows="5" placeholder="Opcional. Deixe em branco se não tiver nada a acrescentar." style="margin-bottom:0"></textarea>
-                <div class="btn-row">
-                    <button class="btn-back" onclick="goTo(9)">← Voltar</button>
-                    <a class="download-btn" style="cursor:pointer;" onclick="gerar()"><i class="fa-solid fa-chart-bar"></i> Ver análise</a>
-                </div>
-            </section>
-        </div>
-
-        <!-- RESULTADO -->
-        <div class="screen" id="screen-result">
-            <section class="section dark" data-aos="fade-up">
-                <h2><i class="fa-solid fa-chart-bar"></i> Análise de Requisitos</h2>
-                <p id="rsub" style="color:var(--text-muted);margin-bottom:0"></p>
-            </section>
-            <div class="result-card">
-                <div class="result-card-title"><i class="fa-solid fa-building" style="margin-right:6px"></i>Dados do Negócio</div>
-                <div id="rdados"></div>
+    <main>
+        <section class="hero hero-simples escuro" style="padding: 56px 0 60px;">
+            <div class="largura largura-estreita">
+                <span class="rotulo">levantamento de projeto</span>
+                <h1 style="font-size: clamp(2rem, 4.4vw, 3rem);">Vamos entender o seu negócio.</h1>
+                <p class="hero-sub" style="margin-bottom: 0;">Antes de qualquer linha de código, precisamos saber como você trabalha e onde perde tempo. Assim a solução é precisa — não genérica.</p>
+                <div class="passo-info" id="stepInfo"></div>
             </div>
-            <div class="result-card">
-                <div class="result-card-title"><i class="fa-solid fa-ranking-star" style="margin-right:6px"></i>Prioridades de Automação</div>
-                <div class="prio-list" id="rprio"></div>
-            </div>
-            <div class="result-card">
-                <div class="result-card-title"><i class="fa-solid fa-server" style="margin-right:6px"></i>Arquitetura Recomendada</div>
-                <div id="rarq"></div>
-            </div>
-            <div class="result-card">
-                <div class="result-card-title"><i class="fa-solid fa-rocket" style="margin-right:6px"></i>MVP — Primeira Entrega</div>
-                <div id="rmvp"></div>
-            </div>
-            <button class="send-btn" id="sendBtn" onclick="enviarEmail()">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span id="sendLabel">ENVIAR RELATÓRIO POR E-MAIL</span>
-            </button>
-            <div class="send-status" id="sendStatus"></div>
-            <button class="restart-btn" onclick="reiniciar()">↩ Novo levantamento</button>
-        </div>
+        </section>
 
+        <section class="secao" style="padding-top: 48px;">
+            <div class="largura largura-estreita">
+
+                <!-- 0: BOAS-VINDAS -->
+                <div class="screen active" id="screen-0">
+                    <div class="painel">
+                        <h2 class="pergunta">Como funciona</h2>
+                        <p class="dica" style="margin-bottom: 0;">Dez perguntas rápidas. Ao final você vê uma análise com as prioridades de automação e a sugestão de primeira entrega — e recebe uma cópia por e-mail.</p>
+                        <div class="metas">
+                            <span><i class="fa-regular fa-clock"></i>~5 minutos</span>
+                            <span><i class="fa-solid fa-list-check"></i>10 perguntas</span>
+                            <span><i class="fa-regular fa-envelope"></i>Confirmação por e-mail</span>
+                        </div>
+                        <a class="botao botao-primario botao-avancar" onclick="goTo(1)"><i class="fa-solid fa-play"></i> Iniciar levantamento</a>
+                    </div>
+                </div>
+
+                <!-- 1: IDENTIFICAÇÃO -->
+                <div class="screen" id="screen-1">
+                    <div class="painel">
+                        <span class="rotulo">identificação</span>
+                        <h2 class="pergunta">Qual é o seu nome, negócio e e-mail?</h2>
+                        <p class="dica">Usamos o e-mail para enviar a confirmação do levantamento e falar com você sobre o projeto.</p>
+                        <div class="campo">
+                            <label for="q1_nome">Nome e negócio *</label>
+                            <input type="text" class="text-field" id="q1_nome" placeholder="Ex.: Ana Silva — Ateliê da Ana" autocomplete="name">
+                        </div>
+                        <div class="campo">
+                            <label for="q1_email">E-mail para contato *</label>
+                            <input type="email" class="text-field" id="q1_email" placeholder="Ex.: ana@email.com" autocomplete="email">
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(0)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(1)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2: TIPO -->
+                <div class="screen" id="screen-2">
+                    <div class="painel">
+                        <span class="rotulo">modelo de negócio</span>
+                        <h2 class="pergunta">Como o seu produto ou serviço funciona?</h2>
+                        <p class="dica">Cada modelo tem gargalos diferentes. Isso define a base da automação.</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="tipo" value="artesanal"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-palette"></i></span><span class="opt-text">Faço ou produzo eu mesmo<small>Artesanal, costura, alimentos, manufatura própria</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="tipo" value="revenda"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-box"></i></span><span class="opt-text">Revendo produtos prontos<small>Compro e revendo, dropshipping</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="tipo" value="servico"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span><span class="opt-text">Presto serviços<small>Consultoria, design, reparos, aulas, escritórios</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="tipo" value="misto"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-shuffle"></i></span><span class="opt-text">Misto — produto e serviço<small>Ex.: vendo o produto e ofereço instalação</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(1)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(2)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3: CANAIS -->
+                <div class="screen" id="screen-3">
+                    <div class="painel">
+                        <span class="rotulo">canais de venda</span>
+                        <h2 class="pergunta">Onde você vende ou atende hoje?</h2>
+                        <p class="dica">Selecione todos os que usa. Cada canal tem uma lógica de automação diferente.</p>
+                        <div class="options cols-2">
+                            <label class="option"><input type="checkbox" name="canal" value="shopee"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-bag-shopping"></i></span><span class="opt-text">Shopee</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="canal" value="mercadolivre"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-handshake"></i></span><span class="opt-text">Mercado Livre</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="canal" value="instagram"><span class="option-label"><span class="opt-icon"><i class="fa-brands fa-instagram"></i></span><span class="opt-text">Instagram / Facebook</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="canal" value="whatsapp"><span class="option-label"><span class="opt-icon"><i class="fa-brands fa-whatsapp"></i></span><span class="opt-text">WhatsApp direto</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="canal" value="site"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-globe"></i></span><span class="opt-text">Site próprio / loja virtual</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="canal" value="presencial"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-store"></i></span><span class="opt-text">Presencial / feiras</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(2)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(3)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4: VOLUME -->
+                <div class="screen" id="screen-4">
+                    <div class="painel">
+                        <span class="rotulo">escala atual</span>
+                        <h2 class="pergunta">Quantos pedidos ou atendimentos por mês?</h2>
+                        <p class="dica">Define se a solução precisa ser leve ou robusta. Uma estimativa já basta.</p>
+                        <div class="options cols-2">
+                            <label class="option"><input type="radio" name="volume" value="1-10"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-seedling"></i></span><span class="opt-text">1 a 10<small>Começando</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="volume" value="11-50"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-chart-line"></i></span><span class="opt-text">11 a 50<small>Crescendo</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="volume" value="51-200"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-rocket"></i></span><span class="opt-text">51 a 200<small>Consolidado</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="volume" value="200+"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-industry"></i></span><span class="opt-text">Mais de 200<small>Alto volume</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(3)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(4)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5: DORES -->
+                <div class="screen" id="screen-5">
+                    <div class="painel">
+                        <span class="rotulo">dores operacionais</span>
+                        <h2 class="pergunta">O que mais consome o seu tempo hoje?</h2>
+                        <p class="dica">Selecione até 3. É onde a automação gera mais impacto imediato.</p>
+                        <div class="options">
+                            <label class="option"><input type="checkbox" name="dor" value="divulgacao"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-bullhorn"></i></span><span class="opt-text">Criar posts e divulgar produtos<small>Fotos, legendas, stories, canais</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="atendimento"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-comments"></i></span><span class="opt-text">Responder clientes<small>Dúvidas, negociação, reclamações</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="pedidos"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-truck-fast"></i></span><span class="opt-text">Controlar pedidos e envios<small>O que saiu, o que está atrasado</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="estoque"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-boxes-stacked"></i></span><span class="opt-text">Controlar estoque ou produção<small>Saber o que tem e o que precisa produzir</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="financeiro"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-sack-dollar"></i></span><span class="opt-text">Controle financeiro<small>Quanto entrou, quanto saiu, lucro</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="posvenda"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-star"></i></span><span class="opt-text">Pós-venda e avaliações<small>Acompanhar satisfação, pedir avaliação</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(4)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(5)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6: PERFIL TÉCNICO -->
+                <div class="screen" id="screen-6">
+                    <div class="painel">
+                        <span class="rotulo">perfil técnico</span>
+                        <h2 class="pergunta">Qual o conforto com tecnologia de quem vai usar?</h2>
+                        <p class="dica">Define a interface: painel, mensagens ou tudo automático.</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="tech" value="zero"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-hand-pointer"></i></span><span class="opt-text">Mínimo — usa o celular só para o básico<small>A solução precisa ser automática ou quase</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="tech" value="basico"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-mobile-screen-button"></i></span><span class="opt-text">Básico — usa aplicativos sem dificuldade<small>Clica em botões e preenche campos</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="tech" value="intermediario"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-table"></i></span><span class="opt-text">Intermediário — usa planilhas e Drive<small>Acessa um painel web simples</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="tech" value="avancado"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-laptop-code"></i></span><span class="opt-text">Avançado — tem noção de tecnologia<small>Instala programas e segue um tutorial</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(5)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(6)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7: SUPORTE -->
+                <div class="screen" id="screen-7">
+                    <div class="painel">
+                        <span class="rotulo">suporte disponível</span>
+                        <h2 class="pergunta">Há alguém para ajudar quando algo der errado?</h2>
+                        <p class="dica">Define o quanto o sistema precisa se recuperar sozinho.</p>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="suporte" value="sempre"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-circle-check"></i></span><span class="opt-text">Sim, sempre<small>Alguém resolve rapidamente</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="suporte" value="as_vezes"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-clock"></i></span><span class="opt-text">Às vezes<small>Leva algumas horas para alguém ajudar</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="suporte" value="raramente"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-triangle-exclamation"></i></span><span class="opt-text">Raramente<small>O sistema precisa se virar sozinho quase sempre</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(6)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(7)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8: PRIORIDADE -->
+                <div class="screen" id="screen-8">
+                    <div class="painel">
+                        <span class="rotulo">primeira entrega</span>
+                        <h2 class="pergunta">O que precisa funcionar primeiro?</h2>
+                        <p class="dica">Se só uma coisa pudesse ser resolvida agora, qual seria? Isso define a primeira entrega.</p>
+                        <textarea class="text-field" id="q8" rows="4" placeholder="Ex.: Quero receber um aviso quando entrar um pedido novo, sem precisar abrir o aplicativo."></textarea>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(7)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(8)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9: ORÇAMENTO -->
+                <div class="screen" id="screen-9">
+                    <div class="painel">
+                        <span class="rotulo">investimento mensal</span>
+                        <h2 class="pergunta">Qual o orçamento mensal para manter o sistema?</h2>
+                        <p class="dica">Inclui servidor, APIs e serviços externos. Define se usamos soluções gratuitas ou pagas.</p>
+                        <div class="options cols-2">
+                            <label class="option"><input type="radio" name="orc" value="zero"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-gift"></i></span><span class="opt-text">R$ 0<small>Só gratuito</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="orc" value="ate50"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-money-bill"></i></span><span class="opt-text">Até R$ 50/mês<small>Servidor básico</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="orc" value="ate150"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-credit-card"></i></span><span class="opt-text">Até R$ 150/mês<small>APIs e servidor robusto</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="orc" value="flex"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-chart-pie"></i></span><span class="opt-text">Flexível<small>Depende do retorno</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(8)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(9)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10: OBSERVAÇÕES -->
+                <div class="screen" id="screen-10">
+                    <div class="painel">
+                        <span class="rotulo">contexto adicional</span>
+                        <h2 class="pergunta">Algo importante que devemos saber?</h2>
+                        <p class="dica">Rotina, sazonalidade, restrições, planos futuros. Pode ser informal. Opcional.</p>
+                        <textarea class="text-field" id="q10" rows="5" placeholder="Opcional. Deixe em branco se não houver nada a acrescentar."></textarea>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(9)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="gerar()"><i class="fa-solid fa-chart-column"></i> Ver análise</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RESULTADO -->
+                <div class="screen" id="screen-result">
+                    <div class="cabecalho-secao" style="margin-bottom: 24px;">
+                        <span class="rotulo">análise de requisitos</span>
+                        <h2>Seu relatório de prioridades</h2>
+                        <p id="rsub"></p>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card-title">dados do negócio</div>
+                        <div id="rdados"></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card-title">prioridades de automação</div>
+                        <div class="prio-list" id="rprio"></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card-title">arquitetura recomendada</div>
+                        <div id="rarq"></div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-card-title">primeira entrega (MVP)</div>
+                        <div id="rmvp"></div>
+                    </div>
+                    <button class="botao botao-primario send-btn" id="sendBtn" onclick="enviarEmail()">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span id="sendLabel">Enviar relatório por e-mail</span>
+                    </button>
+                    <div class="send-status" id="sendStatus"></div>
+                    <button class="botao botao-contorno restart-btn" onclick="reiniciar()"><i class="fa-solid fa-rotate-left"></i> Novo levantamento</button>
+                    <p class="privacidade">Os dados informados são usados apenas para contato sobre este projeto, conforme a LGPD.</p>
+                </div>
+
+            </div>
+        </section>
     </main>
 
-    <footer data-aos="fade-up">
-        <p>© 2026 Gustavo Duran — Duran Labs</p>
-        <div class="footer-contact">
-            <i class="fa-solid fa-envelope" style="margin-right:6px;color:var(--primary)"></i>
-            <a href="mailto:gustavoduran22@gmail.com">gustavoduran22@gmail.com</a>
-            &nbsp;·&nbsp;
-            <i class="fa-brands fa-github" style="margin-right:6px;color:var(--primary)"></i>
-            <a href="https://github.com/GustavoDuranBR" target="_blank">GustavoDuranBR</a>
-            &nbsp;·&nbsp;
-            <i class="fa-solid fa-globe" style="margin-right:6px;color:var(--primary)"></i>
-            <a href="index.html">Duran Labs</a>
-        </div>
-    </footer>
+    <footer id="rodape-site"></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="components.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
         emailjs.init('nvHtp6NoHBReG0C6f');
 
-        const EMAILJS_SERVICE       = 'service_i3f7img';
-        const EMAILJS_TEMPLATE      = 'template_x6ygx0i';
-        const EMAILJS_AUTOREPLY     = 'template_iu68idb'; // substituir pelo ID do auto-reply
+        const EMAILJS_SERVICE   = 'service_i3f7img';
+        const EMAILJS_TEMPLATE  = 'template_x6ygx0i';
+        const EMAILJS_AUTOREPLY = 'template_iu68idb';
 
         const TOTAL = 10;
         let cur = 0;
@@ -364,12 +363,18 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        const R  = n  => document.querySelector(`input[name="${n}"]:checked`)?.value || null;
-        const C  = n  => [...document.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value);
-        const G  = id => document.getElementById(id)?.value?.trim() || '';
+        const R = n  => document.querySelector(`input[name="${n}"]:checked`)?.value || null;
+        const C = n  => [...document.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value);
+        const G = id => document.getElementById(id)?.value?.trim() || '';
 
         function validarEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function escapar(texto) {
+            const div = document.createElement('div');
+            div.textContent = texto == null ? '' : String(texto);
+            return div.innerHTML;
         }
 
         function next(step) {
@@ -385,31 +390,36 @@
                 9: () => !!R('orc'),
             };
             if (ok[step] && !ok[step]()) {
-                const btn = document.querySelector(`#screen-${step} .download-btn`);
+                const btn = document.querySelector(`#screen-${step} .botao-avancar`);
                 const orig = btn.innerHTML;
-                const msg = step === 1 ? 'Preencha nome e e-mail válido' : 'Selecione uma opção';
-                btn.style.background = '#c62828';
+                const msg = step === 1 ? 'Preencha nome e um e-mail válido' : 'Selecione uma opção';
+                btn.classList.add('botao-erro');
                 btn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
-                setTimeout(() => { btn.style.background = ''; btn.innerHTML = orig; }, 1600);
+                setTimeout(() => { btn.classList.remove('botao-erro'); btn.innerHTML = orig; }, 1600);
                 return;
             }
             goTo(step + 1);
         }
 
+        // Máximo de 3 dores, como a pergunta pede
+        document.querySelectorAll('input[name="dor"]').forEach(caixa => caixa.addEventListener('change', () => {
+            if (C('dor').length > 3) caixa.checked = false;
+        }));
+
         const L = {
             tipo:    { artesanal: 'Produção própria/artesanal', revenda: 'Revenda', servico: 'Prestação de serviços', misto: 'Misto (produto + serviço)' },
             canal:   { shopee: 'Shopee', mercadolivre: 'Mercado Livre', instagram: 'Instagram/Facebook', whatsapp: 'WhatsApp', site: 'Site próprio', presencial: 'Presencial/feiras' },
             volume:  { '1-10': '1–10/mês', '11-50': '11–50/mês', '51-200': '51–200/mês', '200+': '200+/mês' },
-            tech:    { zero: 'Zero (sem perfil técnico)', basico: 'Básico (usa apps)', intermediario: 'Intermediário (usa planilhas)', avancado: 'Avançado' },
+            tech:    { zero: 'Mínimo (sem perfil técnico)', basico: 'Básico (usa apps)', intermediario: 'Intermediário (usa planilhas)', avancado: 'Avançado' },
             suporte: { sempre: 'Sempre disponível', as_vezes: 'Às vezes disponível', raramente: 'Raramente disponível' },
-            orc:     { zero: 'R$ 0 (só gratuito)', ate50: 'Até R$ 50/mês', ate150: 'Até R$ 150/mês', flex: 'Flexível / por ROI' },
+            orc:     { zero: 'R$ 0 (só gratuito)', ate50: 'Até R$ 50/mês', ate150: 'Até R$ 150/mês', flex: 'Flexível / por retorno' },
         };
 
         const D = {
             pedidos:     { l: 'Alertas de pedidos',       d: 'Notificação imediata de pedidos novos ou atrasados' },
             divulgacao:  { l: 'Divulgação automática',    d: 'Posts gerados a partir dos produtos cadastrados' },
-            atendimento: { l: 'Templates de atendimento', d: 'Respostas rápidas com dados do produto já preenchidos' },
-            estoque:     { l: 'Painel de produção',       d: 'Visão da fila de trabalho e carga estimada' },
+            atendimento: { l: 'Modelos de atendimento',   d: 'Respostas rápidas com os dados do produto já preenchidos' },
+            estoque:     { l: 'Painel de produção',       d: 'Visão da fila de trabalho e da carga estimada' },
             posvenda:    { l: 'Monitor de avaliações',    d: 'Resumo semanal e alertas de nota baixa' },
             financeiro:  { l: 'Resumo financeiro',        d: 'Relatório automático de receita e margem' },
         };
@@ -417,25 +427,25 @@
         function getArq(tech, sup, orc, canais) {
             const r = [];
             if (tech === 'zero' || sup === 'raramente') {
-                r.push({ i: '☁️', l: 'Hospedagem em nuvem obrigatória', d: 'Railway ou Render — roda 24/7 sem depender de PC local' });
-                r.push({ i: '🤖', l: 'Interface via Telegram Bot',       d: 'Alertas chegam como mensagens — zero configuração do lado do cliente' });
+                r.push({ i: 'fa-solid fa-cloud',    l: 'Hospedagem em nuvem',          d: 'Roda 24 horas sem depender de um computador ligado no escritório' });
+                r.push({ i: 'fa-brands fa-telegram', l: 'Interface por mensagens',     d: 'Os alertas chegam como mensagens — nada para configurar do seu lado' });
             } else if (tech === 'basico') {
-                r.push({ i: '📱', l: 'Interface mobile-first', d: 'Painel web simples acessível pelo celular' });
+                r.push({ i: 'fa-solid fa-mobile-screen', l: 'Interface pensada para o celular', d: 'Painel web simples, acessível de qualquer lugar' });
             } else {
-                r.push({ i: '🖥️', l: 'Painel Streamlit/Web', d: 'Dashboard local ou em nuvem com visão completa' });
+                r.push({ i: 'fa-solid fa-display', l: 'Painel completo', d: 'Aplicativo desktop ou painel web com visão de tudo' });
             }
-            if (orc === 'zero')  r.push({ i: '🆓', l: 'Stack 100% gratuita',    d: 'Render free tier + Telegram Bot API + APIs gratuitas' });
-            if (orc === 'ate50') r.push({ i: '💵', l: 'VPS básico (~R$30/mês)', d: 'Maior confiabilidade, sem cold start' });
+            if (orc === 'zero')  r.push({ i: 'fa-solid fa-gift',   l: 'Estrutura 100% gratuita', d: 'Serviços com plano gratuito e APIs sem custo' });
+            if (orc === 'ate50') r.push({ i: 'fa-solid fa-server', l: 'Servidor básico dedicado', d: 'Mais confiabilidade e resposta imediata' });
             if (canais.includes('whatsapp') && (tech === 'zero' || sup === 'raramente'))
-                r.push({ i: '⚠️', l: 'WhatsApp → substituir por Telegram', d: 'Baileys exige reconexão manual — inviável para perfil técnico zero' });
+                r.push({ i: 'fa-solid fa-triangle-exclamation', l: 'WhatsApp: avaliar alternativa oficial', d: 'Integrações não oficiais exigem reconexão manual; para perfil sem suporte, preferir a API oficial ou o Telegram' });
             return r;
         }
 
         function getMVP(d) {
-            if (d.includes('pedidos'))     return 'Alerta de pedido novo via Telegram: quando um pedido entrar, o sistema envia automaticamente produto, valor e endereço — sem abrir nenhum app.';
-            if (d.includes('divulgacao'))  return 'Divulgação automática: produto cadastrado → sistema gera post formatado e publica no canal Telegram ou WhatsApp.';
-            if (d.includes('atendimento')) return 'Template de atendimento: ao receber dúvida, o sistema detecta o produto e sugere resposta já preenchida com as informações.';
-            return 'Monitor diário: resumo automático com pedidos do dia, receita e avaliações entregue via Telegram toda manhã.';
+            if (d.includes('pedidos'))     return 'Alerta de pedido novo: quando um pedido entrar, o sistema envia produto, valor e endereço automaticamente — sem abrir nenhum aplicativo.';
+            if (d.includes('divulgacao'))  return 'Divulgação automática: produto cadastrado vira um post formatado, pronto para publicar nos seus canais.';
+            if (d.includes('atendimento')) return 'Modelo de atendimento: ao receber uma dúvida, o sistema identifica o produto e sugere a resposta já preenchida.';
+            return 'Resumo diário automático: pedidos do dia, receita e avaliações entregues toda manhã.';
         }
 
         function gerar() {
@@ -451,7 +461,7 @@
             const orc    = R('orc');
             const obs    = G('q10');
 
-            const ord = ['pedidos','divulgacao','atendimento','estoque','posvenda','financeiro'];
+            const ord = ['pedidos', 'divulgacao', 'atendimento', 'estoque', 'posvenda', 'financeiro'];
             const sd  = [...dores].sort((a, b) => ord.indexOf(a) - ord.indexOf(b));
 
             relatorio = { nome, email, tipo, canais, vol, dores: sd, tech, sup, urg, orc, obs };
@@ -468,27 +478,25 @@
                 { l: 'Perfil técnico', v: L.tech[tech] },
                 { l: 'Suporte',        v: L.suporte[sup] },
                 { l: 'Orçamento',      v: L.orc[orc] },
-            ].map(i => `<div class="result-row"><span class="lbl">${i.l}</span><span class="val">${i.v || '—'}</span></div>`).join('');
+            ].map(i => `<div class="result-row"><span class="lbl">${i.l}</span><span class="val">${escapar(i.v) || '—'}</span></div>`).join('');
 
             document.getElementById('rprio').innerHTML = sd.map((d, i) =>
                 `<div class="prio-item">
                     <div class="prio-rank ${i >= 2 ? 'low' : ''}">${i + 1}</div>
-                    <div><strong style="color:var(--text-main)">${D[d].l}</strong><br>
-                    <span style="font-size:12px;color:var(--text-muted)">${D[d].d}</span></div>
+                    <div><strong>${D[d].l}</strong><br><small>${D[d].d}</small></div>
                 </div>`
             ).join('');
 
             document.getElementById('rarq').innerHTML = getArq(tech, sup, orc, canais).map(a =>
-                `<div class="arq-item"><span class="arq-icon">${a.i}</span>
-                <div><strong>${a.l}</strong><span>${a.d}</span></div></div>`
+                `<div class="arq-item"><i class="${a.i}"></i><div><strong>${a.l}</strong><span>${a.d}</span></div></div>`
             ).join('');
 
             document.getElementById('rmvp').innerHTML =
-                `<div class="mvp-box">${getMVP(dores)}${urg ? `<div class="mvp-quote">"${urg}"</div>` : ''}</div>`;
+                `<div class="mvp-box">${getMVP(dores)}${urg ? `<div class="mvp-quote">"${escapar(urg)}"</div>` : ''}</div>`;
 
             document.getElementById('sendStatus').className = 'send-status';
             document.getElementById('sendBtn').disabled = false;
-            document.getElementById('sendLabel').textContent = 'ENVIAR RELATÓRIO POR E-MAIL';
+            document.getElementById('sendLabel').textContent = 'Enviar relatório por e-mail';
 
             goTo('result');
         }
@@ -502,9 +510,9 @@
             btn.disabled = true;
             lbl.textContent = 'Enviando...';
 
-            const doresTexto   = dores.map((d, i) => `${i + 1}. ${D[d].l}`).join('\n');
-            const prioridade1  = dores.length > 0 ? D[dores[0]].l : '—';
-            const dataHoje     = new Date().toLocaleDateString('pt-BR');
+            const doresTexto  = dores.map((d, i) => `${i + 1}. ${D[d].l}`).join('\n');
+            const prioridade1 = dores.length > 0 ? D[dores[0]].l : '—';
+            const dataHoje    = new Date().toLocaleDateString('pt-BR');
 
             const params = {
                 negocio:    nome,
@@ -522,22 +530,22 @@
                 data:       dataHoje,
             };
 
-            // Envia os dois e-mails em paralelo: relatório para você + confirmação para o cliente
+            // Envia os dois e-mails em paralelo: relatório para a Syntax Code + confirmação para o cliente
             Promise.all([
                 emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, params),
                 emailjs.send(EMAILJS_SERVICE, EMAILJS_AUTOREPLY, params),
             ])
             .then(() => {
                 status.className = 'send-status success';
-                status.innerHTML = `✓ Relatório enviado! Uma confirmação foi enviada para <strong>${email}</strong>.`;
-                lbl.textContent = 'ENVIADO ✓';
+                status.innerHTML = `Relatório enviado! Uma confirmação foi enviada para <strong>${escapar(email)}</strong>.`;
+                lbl.textContent = 'Enviado ✓';
             })
             .catch(err => {
                 console.error('EmailJS error:', err);
                 status.className = 'send-status error';
                 status.textContent = 'Erro ao enviar. Verifique sua conexão e tente novamente.';
                 btn.disabled = false;
-                lbl.textContent = 'ENVIAR RELATÓRIO POR E-MAIL';
+                lbl.textContent = 'Enviar relatório por e-mail';
             });
         }
 
@@ -551,4 +559,5 @@
         updateUI();
     </script>
 </body>
+
 </html>

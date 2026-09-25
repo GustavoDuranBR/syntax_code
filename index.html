@@ -4,68 +4,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duran Labs — Automation Software</title>
-
+    <title>Syntax Code — Engenharia de software sob medida</title>
+    <meta name="description" content="A Syntax Code desenvolve produtos próprios e soluções sob medida: sistemas desktop, automações e integrações, com segurança e privacidade desde a primeira linha.">
+    <meta property="og:title" content="Syntax Code — Engenharia de software sob medida">
+    <meta property="og:description" content="Produtos próprios, sistemas sob medida, automações e integrações.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0A0F1C">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* Miniatura da tela do Jurix (dados fictícios), nas cores do produto */
+        .mini-jurix { width: 100%; background: #F6F4EF; border-radius: 12px 0 0 0; display: grid; grid-template-columns: 116px 1fr; min-height: 300px; font-family: var(--corpo); box-shadow: var(--sombra-forte); overflow: hidden; }
+        .mini-lateral { background: #1F2A44; padding: 16px 12px; display: grid; align-content: start; gap: 6px; }
+        .mini-lateral b { font-family: 'Source Serif 4', Georgia, serif; color: #fff; font-size: 15px; margin-bottom: 10px; display: flex; gap: 7px; align-items: center; }
+        .mini-lateral b i { color: #C9A66B; font-size: 13px; }
+        .mini-lateral span { font-size: 11px; color: #AEB7C8; padding: 6px 8px; border-radius: 6px; }
+        .mini-lateral span.ativo { background: rgba(201, 166, 107, .16); color: #fff; }
+        .mini-corpo { padding: 18px; display: grid; gap: 10px; align-content: start; }
+        .mini-corpo h5 { margin: 0 0 4px; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; color: #1B2233; }
+        .mini-cartao { background: #fff; border: 1px solid #E3DED3; border-radius: 8px; padding: 10px 12px; font-size: 11.5px; color: #5A6072; display: flex; justify-content: space-between; gap: 8px; }
+        .mini-cartao strong { color: #1B2233; font-weight: 600; }
+        .mini-selo { font-size: 10px; border-radius: 999px; padding: 2px 8px; background: #F4ECDD; color: #9A7440; white-space: nowrap; align-self: center; }
+        .mini-selo.urgente { background: #FBE9E7; color: #A8322D; }
+    </style>
 </head>
 
 <body>
+    <header id="cabecalho-site"></header>
 
-    <header class="hero" data-aos="fade-down">
-        <h1><i class="fa-solid fa-code"></i> Duran Labs</h1>
-        <p>Automation software e utilitários desktop desenvolvidos em Python.</p>
-        
-        <nav id="main-nav"></nav>
-    </header>
+    <main>
+        <!-- ============================== HERO ============================== -->
+        <section class="hero escuro">
+            <div class="largura hero-grade">
+                <div>
+                    <span class="rotulo">engenharia de software</span>
+                    <h1>Software que resolve o <em>trabalho de verdade</em>.</h1>
+                    <p class="hero-sub">
+                        A Syntax Code desenvolve produtos próprios e soluções sob medida — sistemas desktop,
+                        automações e integrações — com engenharia cuidadosa, segurança e privacidade desde a primeira linha.
+                    </p>
+                    <div class="acoes">
+                        <a href="#produtos" class="botao botao-primario">Conhecer os produtos <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="discovery.html" class="botao botao-fantasma">Falar sobre um projeto</a>
+                    </div>
+                </div>
+                <div class="editor revelar" aria-hidden="true">
+                    <div class="editor-barra"><i></i><i></i><i></i><span>projeto.config.js</span></div>
+<pre><span class="c-comentario">// cada projeto começa entendendo o seu negócio</span>
+<span class="c-chave">const</span> projeto = {
+  cliente: <span class="c-texto">"o seu negócio"</span>,
+  entrega: [<span class="c-texto">"desktop"</span>, <span class="c-texto">"automação"</span>, <span class="c-texto">"integrações"</span>],
+  prioridades: [<span class="c-texto">"segurança"</span>, <span class="c-texto">"privacidade"</span>, <span class="c-texto">"simplicidade"</span>],
+  suporte: <span class="c-texto">"próximo e direto"</span>,
+};
 
-    <main class="container">
-
-        <section class="section" data-aos="fade-up">
-            <h2><i class="fa-solid fa-code"></i> Sobre o Projeto</h2>
-            <p>
-                O <b>Duran Labs</b> é um portal de utilitários e softwares desktop desenvolvidos
-                por Gustavo Duran com foco em produtividade, automação e soluções práticas
-                para o ambiente Windows.
-            </p>
-            <p>
-                Os aplicativos são criados principalmente utilizando Python e possuem
-                como objetivo simplificar tarefas repetitivas, organizar fluxos de trabalho
-                e oferecer ferramentas úteis para profissionais e usuários avançados.
-            </p>
-            <p>
-                Todos os softwares são distribuídos gratuitamente e recebem melhorias
-                contínuas de estabilidade, segurança e novas funcionalidades.
-            </p>
+<span class="c-chave">await</span> syntax.construir(projeto)<span class="c-cursor"></span></pre>
+                </div>
+            </div>
         </section>
 
-        <section class="section dark" data-aos="fade-up">
-            <h2><i class="fa-solid fa-rocket"></i> Aplicativos Disponíveis</h2>
-            <p>
-                Explore abaixo os softwares disponíveis. Cada aplicativo possui
-                uma página dedicada com detalhes técnicos, funcionalidades
-                e instruções de uso.
-            </p>
+        <!-- ============================== SERVIÇOS ============================== -->
+        <section id="servicos" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">o que fazemos</span>
+                    <h2>Da ideia ao sistema funcionando no seu dia a dia.</h2>
+                    <p>Trabalhamos com empresas e profissionais que precisam de software confiável, feito para a rotina deles — não genérico.</p>
+                </div>
+                <div class="grade grade-3">
+                    <article class="cartao revelar">
+                        <span class="icone-quadro"><i class="fa-solid fa-cube"></i></span>
+                        <h3>Produtos próprios</h3>
+                        <p>Softwares completos, com licença, suporte e atualização automática — como o Jurix, para escritórios de advocacia.</p>
+                    </article>
+                    <article class="cartao revelar">
+                        <span class="icone-quadro"><i class="fa-solid fa-code"></i></span>
+                        <h3>Sistemas sob medida</h3>
+                        <p>Aplicações desktop e web desenhadas a partir do seu processo, com dados guardados onde você decidir.</p>
+                    </article>
+                    <article class="cartao revelar">
+                        <span class="icone-quadro"><i class="fa-solid fa-diagram-project"></i></span>
+                        <h3>Automações e integrações</h3>
+                        <p>Robôs, APIs, alertas e rotinas que eliminam o trabalho repetitivo e conectam as ferramentas que você já usa.</p>
+                    </article>
+                </div>
+            </div>
         </section>
 
-        <section id="apps" class="section" data-aos="fade-up">
-            <div id="apps-grid" class="apps-grid"></div>
+        <!-- ============================== PRODUTO EM DESTAQUE ============================== -->
+        <section id="produtos" class="secao secao-branca">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">produto em destaque</span>
+                    <h2>Jurix: a gestão do escritório de advocacia, organizada e protegida.</h2>
+                </div>
+                <div class="destaque-jurix revelar">
+                    <div class="destaque-jurix-texto">
+                        <span class="selo-produto"><i class="fa-solid fa-scale-balanced"></i> Jurix <span data-versao="juridico">v2.1.0</span></span>
+                        <h3>Tudo o que a rotina do escritório pede, num só lugar.</h3>
+                        <p>Sistema desktop para Windows, com os dados no computador do escritório.</p>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Clientes, processos, prazos, agenda e Kanban</li>
+                            <li><i class="fa-solid fa-check"></i> Documentos automáticos em Word e PDF</li>
+                            <li><i class="fa-solid fa-check"></i> Radar CNJ que acompanha os processos sozinho</li>
+                            <li><i class="fa-solid fa-check"></i> Copiloto de IA que protege os dados dos clientes (LGPD)</li>
+                            <li><i class="fa-solid fa-check"></i> Atualizações automáticas e assinadas digitalmente</li>
+                        </ul>
+                        <div class="acoes">
+                            <a href="sistema-juridico.html" class="botao botao-dourado">Conhecer o Jurix <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="sistema-juridico.html#download" class="botao botao-fantasma"><i class="fa-solid fa-download"></i> Download</a>
+                        </div>
+                    </div>
+                    <div class="destaque-jurix-visual" aria-hidden="true">
+                        <div class="mini-jurix">
+                            <div class="mini-lateral">
+                                <b><i class="fa-solid fa-scale-balanced"></i> Jurix</b>
+                                <span class="ativo">Início</span><span>Clientes</span><span>Processos</span><span>Agenda</span><span>Kanban</span><span>Copiloto IA</span>
+                            </div>
+                            <div class="mini-corpo">
+                                <h5>Bom dia, Dra. Helena</h5>
+                                <div class="mini-cartao"><span><strong>Prazo:</strong> contestação — Souza x Mercantil</span><span class="mini-selo urgente">hoje</span></div>
+                                <div class="mini-cartao"><span><strong>Audiência:</strong> 14h — 2ª Vara Cível</span><span class="mini-selo">amanhã</span></div>
+                                <div class="mini-cartao"><span><strong>Radar CNJ:</strong> 2 movimentações novas</span><span class="mini-selo">agora</span></div>
+                                <div class="mini-cartao"><span><strong>Copiloto:</strong> resumo da petição pronto</span><span class="mini-selo">IA</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- ============================== UTILITÁRIOS ============================== -->
+        <section id="utilitarios" class="secao">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">utilitários gratuitos</span>
+                    <h2>Ferramentas para o dia a dia no Windows.</h2>
+                    <p>Aplicativos menores, gratuitos, feitos para resolver uma tarefa específica muito bem.</p>
+                </div>
+                <div class="grade grade-4" data-grade-apps="utilitario"></div>
+            </div>
+        </section>
+
+        <!-- ============================== COMO TRABALHAMOS ============================== -->
+        <section class="secao escuro">
+            <div class="largura">
+                <div class="cabecalho-secao revelar">
+                    <span class="rotulo">como trabalhamos</span>
+                    <h2>Um processo claro, do primeiro contato às atualizações.</h2>
+                    <p>Você acompanha cada etapa e recebe algo funcionando cedo — não um projeto que some por meses.</p>
+                </div>
+                <ol class="passos revelar">
+                    <li><h3>Levantamento</h3><p>Entendemos o negócio, as dores e o que precisa funcionar primeiro. Pode começar pelo nosso formulário.</p></li>
+                    <li><h3>Proposta e primeira entrega</h3><p>Escopo, prazo e investimento claros, com uma primeira versão útil o quanto antes.</p></li>
+                    <li><h3>Entrega testada</h3><p>Código com testes automatizados, instalador e manual. Nada vai para produção sem conferência.</p></li>
+                    <li><h3>Evolução contínua</h3><p>Suporte direto e atualizações que chegam pelo próprio sistema, assinadas digitalmente.</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================== PRINCÍPIOS ============================== -->
+        <section class="secao escuro" style="padding-top: 0;">
+            <div class="largura">
+                <div class="principios revelar">
+                    <div><i class="fa-solid fa-shield-halved"></i><h3>Segurança por padrão</h3><p>Controle de acesso, auditoria e criptografia fazem parte do projeto, não de um remendo.</p></div>
+                    <div><i class="fa-solid fa-user-lock"></i><h3>Privacidade (LGPD)</h3><p>Dados sensíveis ficam com você. O que sai do computador é só o estritamente necessário.</p></div>
+                    <div><i class="fa-solid fa-vial-circle-check"></i><h3>Código testado</h3><p>Centenas de testes automatizados rodam antes de cada versão ser liberada.</p></div>
+                    <div><i class="fa-solid fa-headset"></i><h3>Suporte próximo</h3><p>Você fala com quem construiu o sistema, sem filas nem intermediários.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== CHAMADA ============================== -->
+        <section class="secao">
+            <div class="largura">
+                <div class="chamada revelar">
+                    <div>
+                        <span class="rotulo" style="color: var(--sinal);">vamos conversar</span>
+                        <h2>Tem um processo que poderia ser automatizado?</h2>
+                        <p>Responda o levantamento em 5 minutos e receba um relatório de prioridades com a sugestão de primeira entrega.</p>
+                    </div>
+                    <div class="acoes">
+                        <a href="discovery.html" class="botao botao-primario"><i class="fa-solid fa-clipboard-list"></i> Iniciar levantamento</a>
+                        <a href="mailto:gustavoduran22@gmail.com" class="botao botao-fantasma"><i class="fa-regular fa-envelope"></i> Enviar e-mail</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer data-aos="fade-up"></footer>
-
+    <footer id="rodape-site"></footer>
     <script src="components.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    </script>
-
 </body>
+
 </html>
