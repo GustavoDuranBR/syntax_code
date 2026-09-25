@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css?v=20260926">
+    <link rel="stylesheet" href="style.css?v=20260927">
     <style>
         .progresso { position: sticky; top: 70px; z-index: 40; height: 3px; background: var(--borda); }
         .progresso span { display: block; height: 100%; width: 0; background: var(--acento); transition: width .5s ease; }
@@ -126,6 +126,8 @@
                             <label for="q1_email">E-mail para contato *</label>
                             <input type="email" class="text-field" id="q1_email" placeholder="Ex.: ana@email.com" autocomplete="email">
                         </div>
+                        <input type="text" name="site_empresa" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+
                         <div class="btn-row">
                             <button class="btn-back" onclick="goTo(0)">← Voltar</button>
                             <a class="botao botao-primario botao-avancar" onclick="next(1)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
@@ -336,14 +338,9 @@
     <footer id="rodape-site"></footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="components.js?v=20260926"></script>
+    <script src="components.js?v=20260927"></script>
+    <script src="emailjs-envio.js?v=20260927"></script>
     <script>
-        emailjs.init('nvHtp6NoHBReG0C6f');
-
-        const EMAILJS_SERVICE   = 'service_3h4v4bg';   // Zoho (contato@syntaxcode.com.br)
-        const EMAILJS_TEMPLATE  = 'template_x6ygx0i';
-        const EMAILJS_AUTOREPLY = 'template_iu68idb';
-
         const TOTAL = 10;
         let cur = 0;
         let relatorio = {};
@@ -512,30 +509,34 @@
 
             const doresTexto  = dores.map((d, i) => `${i + 1}. ${D[d].l}`).join('\n');
             const prioridade1 = dores.length > 0 ? D[dores[0]].l : '—';
-            const dataHoje    = new Date().toLocaleDateString('pt-BR');
+            const canaisTexto = canais.map(c => L.canal[c]).join(', ');
 
             const params = {
-                negocio:    nome,
-                email:      email,          // usado no Reply-To e no auto-reply
-                modelo:     L.tipo[tipo],
-                canais:     canais.map(c => L.canal[c]).join(', '),
-                volume:     L.volume[vol],
-                dores:      doresTexto,
-                prioridade1,
-                perfil:     L.tech[tech],
-                suporte:    L.suporte[sup],
-                orcamento:  L.orc[orc],
-                urgencia:   urg || 'Não informado',
-                obs:        obs || 'Nenhuma',
-                data:       dataHoje,
+                nome, email,
+                rotulo: 'novo levantamento',
+                titulo: 'Novo levantamento',
+                destaque_rotulo: 'prioridade nº 1',
+                destaque_texto: prioridade1,
+                detalhes: linhasRelatorio([
+                    ['Negócio', nome], ['E-mail', email], ['Modelo', L.tipo[tipo]], ['Canais', canaisTexto],
+                    ['Volume', L.volume[vol]], ['Perfil técnico', L.tech[tech]], ['Suporte disponível', L.suporte[sup]],
+                    ['Orçamento mensal', L.orc[orc]],
+                ]) + blocoRelatorio('prioridades de automação', doresTexto)
+                   + blocoRelatorio('o que precisa funcionar primeiro', urg || 'Não informado')
+                   + blocoRelatorio('observações', obs || 'Nenhuma'),
+                titulo_confirmacao: 'Recebemos o seu levantamento',
+                mensagem: 'Obrigado por responder ao levantamento. Suas respostas foram registradas e já estamos analisando '
+                        + 'as melhores soluções para o seu projeto. Entraremos em contato em até 24 horas úteis para alinhar '
+                        + 'os próximos passos. Se preferir falar antes, é só responder a este e-mail.',
+                r1_rotulo: 'Modelo', r1_valor: L.tipo[tipo],
+                r2_rotulo: 'Volume', r2_valor: L.volume[vol],
+                r3_rotulo: 'Canais', r3_valor: canaisTexto,
+                r4_rotulo: 'Orçamento', r4_valor: L.orc[orc],
             };
 
-            // Envia os dois e-mails em paralelo: relatório para a Syntax Code + confirmação para o cliente
-            Promise.all([
-                emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, params),
-                emailjs.send(EMAILJS_SERVICE, EMAILJS_AUTOREPLY, params),
-            ])
-            .then(() => {
+            // Armadilha anti-robô preenchida: finge sucesso e não envia nada
+            const envio = ehRobo(document) ? Promise.resolve() : enviarPeloEmailJS(params);
+            envio.then(() => {
                 status.className = 'send-status success';
                 status.innerHTML = `Relatório enviado! Uma confirmação foi enviada para <strong>${escapar(email)}</strong>.`;
                 lbl.textContent = 'Enviado ✓';

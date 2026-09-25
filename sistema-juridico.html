@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-    <link rel="stylesheet" href="jurix/jurix.css?v=20260926">
+    <link rel="stylesheet" href="jurix/jurix.css?v=20260927">
 </head>
 
 <body>
@@ -479,7 +479,7 @@
                     <p class="texto-claro">Deixe seus dados e entraremos em contato para agendar uma demonstração.</p>
                 </div>
 
-                <form class="formulario" action="https://formspree.io/f/mrpbkzle" method="POST">
+                <form class="formulario" id="form-demonstracao" novalidate>
                     <div class="formulario-grade">
                         <div>
                             <label for="f-nome">Nome completo</label>
@@ -512,7 +512,9 @@
                         <input type="checkbox" name="consentimento_lgpd" value="sim" required>
                         Autorizo o uso destes dados apenas para contato sobre o Jurix, conforme a LGPD.
                     </label>
-                    <button type="submit" class="botao botao-dourado">Solicitar demonstração</button>
+                    <input type="text" name="site_empresa" tabindex="-1" autocomplete="off" aria-hidden="true" class="campo-armadilha">
+                    <button type="submit" class="botao botao-dourado" id="btn-demonstracao">Solicitar demonstração</button>
+                    <p class="formulario-status" id="status-demonstracao" role="status" aria-live="polite"></p>
                 </form>
             </div>
         </section>
@@ -532,7 +534,61 @@
         </div>
     </footer>
 
-    <script src="jurix/jurix.js?v=20260926"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="emailjs-envio.js?v=20260927"></script>
+    <script src="jurix/jurix.js?v=20260927"></script>
+    <script>
+        // Pedido de demonstração: relatório para contato@ e confirmação para o escritório (EmailJS)
+        (function () {
+            const form = document.getElementById("form-demonstracao");
+            const botao = document.getElementById("btn-demonstracao");
+            const status = document.getElementById("status-demonstracao");
+            if (!form) return;
+            const valor = nome => (form.elements[nome].value || "").trim();
+            const avisar = (texto, tipo) => { status.textContent = texto; status.className = "formulario-status " + tipo; };
+
+            form.addEventListener("submit", async evento => {
+                evento.preventDefault();
+                const nome = valor("nome"), email = valor("email");
+                if (nome.length < 3) return avisar("Informe o seu nome completo.", "erro");
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return avisar("Informe um e-mail válido.", "erro");
+                if (!form.elements["consentimento_lgpd"].checked) return avisar("Marque a autorização de uso dos dados (LGPD).", "erro");
+
+                const telefone = valor("telefone"), oab = valor("oab"), tamanho = valor("tamanho");
+                const params = {
+                    nome, email,
+                    rotulo: "pedido de demonstração · Jurix",
+                    titulo: "Demonstração do Jurix",
+                    destaque_rotulo: "tamanho do escritório",
+                    destaque_texto: tamanho || "Não informado",
+                    detalhes: linhasRelatorio([
+                        ["Nome", nome], ["E-mail", email], ["Telefone / WhatsApp", telefone],
+                        ["Inscrição OAB", oab], ["Tamanho do escritório", tamanho], ["Consentimento LGPD", "Sim"],
+                    ]),
+                    titulo_confirmacao: "Recebemos o seu pedido de demonstração",
+                    mensagem: "Obrigado pelo interesse no Jurix. Entraremos em contato em até 24 horas úteis para "
+                            + "combinar o melhor horário para a demonstração. Se preferir falar antes, é só responder a este e-mail.",
+                    r1_rotulo: "Produto", r1_valor: "Jurix — gestão jurídica",
+                    r2_rotulo: "Telefone", r2_valor: telefone,
+                    r3_rotulo: "OAB", r3_valor: oab,
+                    r4_rotulo: "Escritório", r4_valor: tamanho,
+                };
+
+                botao.disabled = true;
+                avisar("Enviando...", "");
+                try {
+                    if (!ehRobo(form)) await enviarPeloEmailJS(params);
+                    form.reset();
+                    avisar("Pedido enviado! Enviamos uma confirmação para " + email + ". Retornamos em até 24 horas úteis.", "sucesso");
+                } catch (erro) {
+                    console.error("EmailJS:", erro);
+                    avisar("Não foi possível enviar agora. Tente novamente ou escreva para contato@syntaxcode.com.br.", "erro");
+                } finally {
+                    botao.disabled = false;
+                }
+            });
+        })();
+    </script>
     <script>
         // Versão e links de download vêm do apps.json do site (mesma fonte da página inicial)
         fetch("apps.json", { cache: "no-cache" }).then(r => r.json()).then(apps => {

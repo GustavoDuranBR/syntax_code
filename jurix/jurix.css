@@ -288,3 +288,10 @@ img { max-width: 100%; }
 .rodape-direitos a { color: inherit; }
 @media (max-width: 860px) { .grade-download { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .faixa-syntax-conteudo > span { display: none; } .botoes-download .botao { width: 100%; } }
+
+/* ---------------- Formulário de demonstração (EmailJS) ---------------- */
+.campo-armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.formulario-status { margin: 0; font-size: 14px; min-height: 20px; color: var(--claro-suave); }
+.formulario-status.sucesso { color: #7DD3C0; }
+.formulario-status.erro { color: #F2A7A2; }
+.formulario button:disabled { opacity: .6; cursor: not-allowed; transform: none; }
