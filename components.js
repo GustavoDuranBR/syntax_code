@@ -12,7 +12,8 @@ const MARCA_SVG = `
 
 const MARCA = `<a href="index.html" class="marca" aria-label="Syntax Code — página inicial">${MARCA_SVG}<span class="marca-nome">Syntax<span>Code</span></span></a>`;
 
-const EMAIL_CONTATO = "gustavoduran22@gmail.com";
+const EMAIL_CONTATO = "contato@syntaxcode.com.br";
+const EMAIL_SUPORTE = "suporte@syntaxcode.com.br";
 const GITHUB = "https://github.com/GustavoDuranBR";
 
 function paginaAtual() {
@@ -84,7 +85,8 @@ function montarRodape() {
                 <div>
                     <h4>Contato</h4>
                     <ul>
-                        <li><a href="mailto:${EMAIL_CONTATO}"><i class="fa-regular fa-envelope"></i> E-mail</a></li>
+                        <li><a href="mailto:${EMAIL_CONTATO}"><i class="fa-regular fa-envelope"></i> ${EMAIL_CONTATO}</a></li>
+                        <li><a href="mailto:${EMAIL_SUPORTE}"><i class="fa-solid fa-headset"></i> Suporte</a></li>
                         <li><a href="${GITHUB}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a></li>
                     </ul>
                 </div>

@@ -4,12 +4,12 @@
     "titulo": "Jurix",
     "rotulo": "Gestão jurídica",
     "icone": "fa-scale-balanced",
-    "versao": "v2.1.0",
+    "versao": "v2.1.1",
     "categoria": "produto",
     "resumo": "Sistema desktop para escritórios de advocacia: clientes, processos, prazos, documentos automáticos, Radar CNJ e copiloto de IA com proteção de dados.",
     "detalhes_url": "sistema-juridico.html",
-    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.0/Instalador_Jurix_v2.1.0.exe",
-    "manual_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.0/Manual_Instalacao_Jurix_v2.1.0.pdf"
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.1/Instalador_Jurix_v2.1.1.exe",
+    "manual_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.1/Manual_Instalacao_Jurix_v2.1.1.pdf"
   },
   {
     "id": "poemarkethelper",
