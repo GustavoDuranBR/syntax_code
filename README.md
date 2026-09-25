@@ -1,7 +1,7 @@
 # Syntax Code — site
 
-Site institucional da **Syntax Code**, publicado pelo GitHub Pages em
-<https://gustavoduranbr.github.io/syntax_code/>.
+Site institucional da **Syntax Code**, publicado pelo GitHub Pages em <https://syntaxcode.com.br>
+(o arquivo `CNAME` define o domínio; o endereço antigo `gustavoduranbr.github.io/syntax_code` redireciona para ele).
 
 HTML, CSS e JavaScript puros, sem build: basta editar e publicar.
 
