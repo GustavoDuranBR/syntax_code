@@ -1,17 +1,16 @@
 {
   "produto": "jurix",
-  "versao": "2.2.0",
+  "versao": "2.3.0",
   "publicada": "2026-09-26",
-  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.2.0/Instalador_Jurix_v2.2.0.exe",
-  "sha256": "403350ede63f2ce4b8eff042ed0ac9568440cfbb92e0270673a75f640c3b7bf5",
-  "tamanho": 40680006,
+  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.3.0/Instalador_Jurix_v2.3.0.exe",
+  "sha256": "7afcf0e9ceff06b27baf6955e5e3690bbecfa538142fbd9b0f26b417ef3f1ce5",
+  "tamanho": 40698619,
   "notas": [
-    "Publicações do DJEN: as intimações chegam sozinhas pela OAB e pelo nome dos advogados, ligadas ao processo.",
-    "Cálculo de prazos em dias úteis, com feriados e recesso forense, direto para a Agenda.",
-    "Agenda da equipe: responsável por compromisso e compromissos particulares ou 'ocupado'.",
-    "Documentos abertos dentro do Jurix, organizados por parte, sem expor as pastas.",
-    "Backup automático diário e cifrado no OneDrive ou Google Drive do escritório."
+    "Plano Autônomo: um único advogado, sem usuário de TI; acesso criado na tela Bem-vindo(a) e código de recuperação.",
+    "Meus dados: o advogado corrige OAB, telefone, e-mail e endereço a qualquer momento.",
+    "Copiloto: agenda e tarefas com datas mais fáceis de ler.",
+    "Correções: publicações começam logo após ativar a licença; PDF sem Word vai direto ao LibreOffice; log sem dados de clientes; janela do contrato com fundo sólido."
   ],
   "obrigatoria": false,
-  "assinatura": "mDi7_sIAaBbfUd2jJ_cgTs7qgUZz2GrsT8As4sOOCcnFaa7k3vwjBAZIabTnfDK6gJu3fUAmi3ZC9klttqb5Bw"
+  "assinatura": "rGHyzAcnMQIu_N1xP2DSQe1CWPmkCgDr1QkIT-qVR7P-O3hl4faJdRDB7uoyXyYwh1jHzyUHtCza52Ymvc-9Aw"
 }
