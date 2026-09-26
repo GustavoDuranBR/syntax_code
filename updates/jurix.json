@@ -1,15 +1,17 @@
 {
   "produto": "jurix",
-  "versao": "2.1.1",
-  "publicada": "2026-09-25",
-  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.1.1/Instalador_Jurix_v2.1.1.exe",
-  "sha256": "36ea56873f7c93145c2b317506cbce7a9b4351d970635e7a5fcd39b98ae5a77e",
-  "tamanho": 40602979,
+  "versao": "2.2.0",
+  "publicada": "2026-09-26",
+  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.2.0/Instalador_Jurix_v2.2.0.exe",
+  "sha256": "403350ede63f2ce4b8eff042ed0ac9568440cfbb92e0270673a75f640c3b7bf5",
+  "tamanho": 40680006,
   "notas": [
-    "Novos contatos oficiais da Syntax Code: suporte@syntaxcode.com.br e licencas@syntaxcode.com.br.",
-    "A tela de licença agora informa para onde enviar os códigos de ativação.",
-    "O aviso de vencimento da licença indica o contato para renovação."
+    "Publicações do DJEN: as intimações chegam sozinhas pela OAB e pelo nome dos advogados, ligadas ao processo.",
+    "Cálculo de prazos em dias úteis, com feriados e recesso forense, direto para a Agenda.",
+    "Agenda da equipe: responsável por compromisso e compromissos particulares ou 'ocupado'.",
+    "Documentos abertos dentro do Jurix, organizados por parte, sem expor as pastas.",
+    "Backup automático diário e cifrado no OneDrive ou Google Drive do escritório."
   ],
   "obrigatoria": false,
-  "assinatura": "pRdkkLQ_NrZXf5ZKJF7NhPUS6-vX-D6cRvA1y8IrnLFfpvI-VF0DZWZqy8ZCOmqvDg7Mr2HOVRLcaFyH6p5NDw"
+  "assinatura": "mDi7_sIAaBbfUd2jJ_cgTs7qgUZz2GrsT8As4sOOCcnFaa7k3vwjBAZIabTnfDK6gJu3fUAmi3ZC9klttqb5Bw"
 }
