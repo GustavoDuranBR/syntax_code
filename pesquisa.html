@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa: a rotina de quem trabalha por conta própria — Syntax Code</title>
+    <meta name="description" content="Pesquisa rápida sobre como profissionais autônomos organizam clientes, orçamentos, cobranças e recibos.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#0A0F1C">
+    <meta property="og:title" content="Me ajuda com 5 minutos? Pesquisa para autônomos">
+    <meta property="og:description" content="Como você organiza clientes, orçamentos, cobranças e recibos? Suas respostas ajudam a criar uma ferramenta simples para autônomos.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css?v=20260927">
+    <style>
+        .progresso { position: sticky; top: 70px; z-index: 40; height: 3px; background: var(--borda); }
+        .progresso span { display: block; height: 100%; width: 0; background: var(--acento); transition: width .5s ease; }
+        .passo-info { font-family: var(--mono); font-size: 13px; color: var(--texto-claro-suave); margin-top: 18px; min-height: 20px; }
+        .passo-info strong { color: var(--sinal); font-weight: 500; }
+        .screen { display: none; }
+        .screen.active { display: block; animation: surgir .35s ease; }
+        @keyframes surgir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .painel { background: var(--branco); border: 1px solid var(--borda); border-radius: 18px; padding: 40px; box-shadow: var(--sombra); }
+        .pergunta { font-size: clamp(1.35rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 10px; }
+        .dica { color: var(--texto-suave); margin-bottom: 28px; padding-left: 14px; border-left: 2px solid var(--borda); }
+        .subpergunta { font-size: 1.05rem; font-weight: 700; margin: 26px 0 12px; }
+        .campo { margin-bottom: 16px; }
+        .campo label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+        .text-field { width: 100%; padding: 13px 15px; font-family: var(--corpo); font-size: 15px; color: var(--texto); background: var(--papel); border: 1px solid var(--borda); border-radius: 10px; outline: none; resize: vertical; transition: border-color .15s, box-shadow .15s; }
+        .text-field:focus { border-color: var(--acento); box-shadow: 0 0 0 3px rgba(61, 90, 254, .15); background: var(--branco); }
+        .options { display: grid; gap: 10px; margin-bottom: 8px; }
+        .options.cols-2 { grid-template-columns: 1fr 1fr; }
+        .option { position: relative; cursor: pointer; }
+        .option input { position: absolute; opacity: 0; width: 0; height: 0; }
+        .option-label { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--papel); border: 1px solid var(--borda); border-radius: 12px; font-size: 15px; color: var(--texto); transition: border-color .15s, background .15s; user-select: none; }
+        .opt-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--branco); border: 1px solid var(--borda); color: var(--acento); display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .opt-text { flex: 1; font-weight: 500; }
+        .opt-text small { display: block; font-size: 13px; font-weight: 400; color: var(--texto-suave); margin-top: 2px; }
+        .check { width: 18px; height: 18px; border: 1.5px solid #C3C9D4; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+        .option:hover .option-label { border-color: #B8C3FF; }
+        .option input:focus-visible + .option-label { outline: 2px solid var(--acento); outline-offset: 2px; }
+        .option input:checked + .option-label { border-color: var(--acento); background: var(--acento-suave); }
+        .option input:checked + .option-label .check { background: var(--acento); border-color: var(--acento); }
+        .option input:checked + .option-label .check::after { content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+        .option input[type="checkbox"] + .option-label .check { border-radius: 5px; }
+        .option input[type="checkbox"]:checked + .option-label .check::after { content: '✓'; width: auto; height: auto; background: none; color: #fff; font-size: 11px; font-weight: 700; }
+        .btn-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
+        .btn-row .botao-avancar { cursor: pointer; }
+        .btn-back { background: none; border: 1px solid var(--borda); border-radius: 10px; color: var(--texto-suave); font-family: var(--corpo); font-size: 15px; min-height: 48px; padding: 0 18px; cursor: pointer; }
+        .btn-back:hover { border-color: var(--texto-suave); color: var(--texto); }
+        .botao-erro { background: var(--perigo) !important; }
+        .metas { display: flex; gap: 24px; flex-wrap: wrap; margin: 20px 0 30px; color: var(--texto-suave); font-size: 15px; }
+        .metas i { color: var(--acento); margin-right: 8px; }
+        .consentimento { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--texto-suave); margin-top: 22px; cursor: pointer; }
+        .consentimento input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--acento); flex-shrink: 0; }
+        .send-status { display: none; padding: 14px 16px; border-radius: 10px; font-size: 14.5px; margin-top: 12px; text-align: center; }
+        .send-status.error { display: block; background: #FDECEB; border: 1px solid var(--perigo); color: var(--perigo); }
+        .obrigado { text-align: center; }
+        .obrigado i { font-size: 44px; color: var(--sinal); margin-bottom: 16px; }
+        .contador { font-size: 13px; color: var(--texto-suave); margin-top: 6px; }
+        @media (max-width: 560px) { .options.cols-2 { grid-template-columns: 1fr; } .painel { padding: 26px 18px; } }
+    </style>
+</head>
+
+<body>
+    <header id="cabecalho-site"></header>
+    <div class="progresso"><span id="progressBar"></span></div>
+
+    <main>
+        <section class="hero hero-simples escuro" style="padding: 56px 0 60px;">
+            <div class="largura largura-estreita">
+                <span class="rotulo">pesquisa rápida</span>
+                <h1 style="font-size: clamp(2rem, 4.4vw, 3rem);">Como é a rotina de quem trabalha por conta própria?</h1>
+                <p class="hero-sub" style="margin-bottom: 0;">Estou criando uma ferramenta simples para autônomos organizarem clientes, orçamentos, cobranças e recibos. Antes de construir, quero ouvir quem vive isso no dia a dia.</p>
+                <div class="passo-info" id="stepInfo"></div>
+            </div>
+        </section>
+
+        <section class="secao" style="padding-top: 48px;">
+            <div class="largura largura-estreita">
+
+                <!-- 0: BOAS-VINDAS -->
+                <div class="screen active" id="screen-0">
+                    <div class="painel">
+                        <h2 class="pergunta">Obrigado por ajudar!</h2>
+                        <p class="dica" style="margin-bottom: 0;">São perguntas rápidas, quase todas de clicar. Não existe resposta certa: conte como é de verdade, mesmo que seja "tudo de cabeça".</p>
+                        <div class="metas">
+                            <span><i class="fa-regular fa-clock"></i>~5 minutos</span>
+                            <span><i class="fa-solid fa-list-check"></i>10 passos</span>
+                            <span><i class="fa-solid fa-user-shield"></i>Respostas só para esta pesquisa</span>
+                        </div>
+                        <a class="botao botao-primario botao-avancar" onclick="goTo(1)"><i class="fa-solid fa-play"></i> Começar</a>
+                    </div>
+                </div>
+
+                <!-- 1: QUEM É -->
+                <div class="screen" id="screen-1">
+                    <div class="painel">
+                        <span class="rotulo">sobre você</span>
+                        <h2 class="pergunta">Quem é você e qual a sua profissão?</h2>
+                        <p class="dica">O e-mail é só para mandar a confirmação e, se você quiser, um convite para testar a ferramenta.</p>
+                        <div class="campo">
+                            <label for="q_nome">Seu nome *</label>
+                            <input type="text" class="text-field" id="q_nome" placeholder="Ex.: Ana Silva" autocomplete="name">
+                        </div>
+                        <div class="campo">
+                            <label for="q_profissao">Profissão *</label>
+                            <select class="text-field" id="q_profissao">
+                                <option value="">Escolha…</option>
+                                <option>Arquiteto(a) / Designer de interiores</option>
+                                <option>Advogado(a)</option>
+                                <option>Contador(a)</option>
+                                <option>Personal chef / Cozinheiro(a) sob encomenda</option>
+                                <option>Confeiteiro(a) / Doces e bolos</option>
+                                <option>Psicólogo(a) / Terapeuta</option>
+                                <option>Nutricionista</option>
+                                <option>Personal trainer / Professor(a) de atividade física</option>
+                                <option>Professor(a) particular / Aulas</option>
+                                <option>Designer / Fotógrafo(a) / Social media</option>
+                                <option>Consultor(a) / Corretor(a)</option>
+                                <option>Pintor(a) / Pedreiro(a) / Eletricista / Reformas</option>
+                                <option>Beleza e estética (cabelo, unhas, sobrancelha)</option>
+                                <option>Outra</option>
+                            </select>
+                        </div>
+                        <div class="campo" id="campoOutra" style="display:none;">
+                            <label for="q_outra">Qual profissão?</label>
+                            <input type="text" class="text-field" id="q_outra" placeholder="Ex.: Paisagista">
+                        </div>
+                        <div class="campo">
+                            <label for="q_email">E-mail *</label>
+                            <input type="email" class="text-field" id="q_email" placeholder="Ex.: ana@email.com" autocomplete="email">
+                        </div>
+                        <div class="campo">
+                            <label for="q_whats">WhatsApp (opcional)</label>
+                            <input type="tel" class="text-field" id="q_whats" placeholder="Ex.: (11) 91234-5678" autocomplete="tel">
+                        </div>
+                        <input type="text" name="site_empresa" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(0)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(1)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2: COMO TRABALHA -->
+                <div class="screen" id="screen-2">
+                    <div class="painel">
+                        <span class="rotulo">como você trabalha</span>
+                        <h2 class="pergunta">Você trabalha sozinho(a)?</h2>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="equipe" value="sozinho"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-user"></i></span><span class="opt-text">Sozinho(a)</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="equipe" value="ajudante"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-user-plus"></i></span><span class="opt-text">Com 1 ajudante ou sócio(a)</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="equipe" value="equipe"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-users"></i></span><span class="opt-text">Com uma pequena equipe (3 ou mais)</span><span class="check"></span></span></label>
+                        </div>
+                        <h3 class="subpergunta">Onde você passa a maior parte do tempo de trabalho?</h3>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="local" value="pc"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-laptop"></i></span><span class="opt-text">No computador<small>Escritório, home office, consultório</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="local" value="rua"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-person-walking"></i></span><span class="opt-text">Na rua ou na casa do cliente<small>Uso mais o celular</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="local" value="misto"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-shuffle"></i></span><span class="opt-text">Metade de cada</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(1)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(2)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3: CLIENTES E COBRANÇA -->
+                <div class="screen" id="screen-3">
+                    <div class="painel">
+                        <span class="rotulo">clientes</span>
+                        <h2 class="pergunta">Quantos clientes você atende por mês?</h2>
+                        <div class="options cols-2">
+                            <label class="option"><input type="radio" name="clientes" value="1-5"><span class="option-label"><span class="opt-text">1 a 5</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="clientes" value="6-15"><span class="option-label"><span class="opt-text">6 a 15</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="clientes" value="16-40"><span class="option-label"><span class="opt-text">16 a 40</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="clientes" value="40+"><span class="option-label"><span class="opt-text">Mais de 40</span><span class="check"></span></span></label>
+                        </div>
+                        <h3 class="subpergunta">Como você cobra? (pode marcar mais de um)</h3>
+                        <div class="options">
+                            <label class="option"><input type="checkbox" name="cobranca" value="projeto"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-file-signature"></i></span><span class="opt-text">Por serviço ou projeto fechado<small>Orçamento aprovado, às vezes em parcelas</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="cobranca" value="mensal"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-calendar-days"></i></span><span class="opt-text">Mensalidade fixa<small>O mesmo cliente todo mês</small></span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="cobranca" value="sessao"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-clock"></i></span><span class="opt-text">Por hora, sessão ou aula</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="cobranca" value="pacote"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-box-open"></i></span><span class="opt-text">Pacotes<small>Ex.: 10 sessões, 20 marmitas</small></span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(2)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(3)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4: COMO CONTROLA HOJE -->
+                <div class="screen" id="screen-4">
+                    <div class="painel">
+                        <span class="rotulo">hoje</span>
+                        <h2 class="pergunta">O que você usa hoje para se organizar?</h2>
+                        <p class="dica">Marque tudo o que usa, mesmo que seja pouco.</p>
+                        <div class="options cols-2">
+                            <label class="option"><input type="checkbox" name="ferramenta" value="cabeca"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-brain"></i></span><span class="opt-text">De cabeça</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="ferramenta" value="caderno"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-book"></i></span><span class="opt-text">Caderno / agenda de papel</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="ferramenta" value="planilha"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-table"></i></span><span class="opt-text">Planilha (Excel / Google)</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="ferramenta" value="whatsapp"><span class="option-label"><span class="opt-icon"><i class="fa-brands fa-whatsapp"></i></span><span class="opt-text">Conversas do WhatsApp</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="ferramenta" value="word"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-file-word"></i></span><span class="opt-text">Word / Google Docs</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="ferramenta" value="app"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-mobile-screen"></i></span><span class="opt-text">Um aplicativo ou sistema</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="campo" id="campoApp" style="display:none; margin-top: 12px;">
+                            <label for="q_app">Qual aplicativo ou sistema? O que acha dele?</label>
+                            <input type="text" class="text-field" id="q_app" placeholder="Ex.: uso o X, mas é caro / complicado / não tem Y">
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(3)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(4)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5: DORES -->
+                <div class="screen" id="screen-5">
+                    <div class="painel">
+                        <span class="rotulo">o que mais incomoda</span>
+                        <h2 class="pergunta">O que mais dá trabalho ou dor de cabeça?</h2>
+                        <p class="dica">Escolha até 3.</p>
+                        <div class="options">
+                            <label class="option"><input type="checkbox" name="dor" value="clientes"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-address-book"></i></span><span class="opt-text">Organizar clientes e o histórico de cada um</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="orcamentos"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span><span class="opt-text">Fazer orçamentos e acompanhar se foram aprovados</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="cobrar"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span><span class="opt-text">Cobrar e saber quem está devendo</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="documentos"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-file-contract"></i></span><span class="opt-text">Fazer recibos, contratos e propostas</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="agenda"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-calendar-check"></i></span><span class="opt-text">Agenda, prazos e compromissos</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="financeiro"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-sack-dollar"></i></span><span class="opt-text">Saber quanto ganhei e gastei no mês</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="impostos"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-landmark"></i></span><span class="opt-text">Impostos, MEI, carnê-leão, nota fiscal</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="dor" value="arquivos"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-folder-open"></i></span><span class="opt-text">Guardar arquivos, fotos e documentos de cada cliente</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(4)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(5)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6: DOCUMENTOS E RECEBIMENTO -->
+                <div class="screen" id="screen-6">
+                    <div class="painel">
+                        <span class="rotulo">documentos</span>
+                        <h2 class="pergunta">Quais documentos você costuma fazer para os clientes?</h2>
+                        <div class="options cols-2">
+                            <label class="option"><input type="checkbox" name="doc" value="orcamento"><span class="option-label"><span class="opt-text">Orçamento / proposta</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="doc" value="contrato"><span class="option-label"><span class="opt-text">Contrato</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="doc" value="recibo"><span class="option-label"><span class="opt-text">Recibo</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="doc" value="nota"><span class="option-label"><span class="opt-text">Nota fiscal</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="doc" value="relatorio"><span class="option-label"><span class="opt-text">Relatório, laudo ou plano</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="doc" value="nenhum"><span class="option-label"><span class="opt-text">Nenhum</span><span class="check"></span></span></label>
+                        </div>
+                        <h3 class="subpergunta">Como os clientes costumam pagar?</h3>
+                        <div class="options cols-2">
+                            <label class="option"><input type="checkbox" name="pag" value="pix"><span class="option-label"><span class="opt-text">PIX</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="pag" value="transferencia"><span class="option-label"><span class="opt-text">Transferência / boleto</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="pag" value="cartao"><span class="option-label"><span class="opt-text">Cartão (maquininha ou link)</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="pag" value="dinheiro"><span class="option-label"><span class="opt-text">Dinheiro</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(5)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(6)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7: APARELHO -->
+                <div class="screen" id="screen-7">
+                    <div class="painel">
+                        <span class="rotulo">onde usaria</span>
+                        <h2 class="pergunta">Onde você usaria uma ferramenta dessas?</h2>
+                        <p class="dica">Marque o que você tem e usaria para trabalhar.</p>
+                        <div class="options">
+                            <label class="option"><input type="checkbox" name="aparelho" value="windows"><span class="option-label"><span class="opt-icon"><i class="fa-brands fa-windows"></i></span><span class="opt-text">Computador ou notebook com Windows</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="aparelho" value="mac"><span class="option-label"><span class="opt-icon"><i class="fa-brands fa-apple"></i></span><span class="opt-text">Mac</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="aparelho" value="android"><span class="option-label"><span class="opt-icon"><i class="fa-brands fa-android"></i></span><span class="opt-text">Celular Android</span><span class="check"></span></span></label>
+                            <label class="option"><input type="checkbox" name="aparelho" value="iphone"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-mobile-screen-button"></i></span><span class="opt-text">iPhone</span><span class="check"></span></span></label>
+                        </div>
+                        <h3 class="subpergunta">E o mais importante para você é…</h3>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="preferencia" value="pc"><span class="option-label"><span class="opt-text">Usar no computador, com calma</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="preferencia" value="celular"><span class="option-label"><span class="opt-text">Usar no celular, na hora, de qualquer lugar</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="preferencia" value="ambos"><span class="option-label"><span class="opt-text">Os dois</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(6)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(7)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8: VALOR -->
+                <div class="screen" id="screen-8">
+                    <div class="painel">
+                        <span class="rotulo">valor</span>
+                        <h2 class="pergunta">Quanto pagaria por mês por uma ferramenta que resolvesse isso?</h2>
+                        <p class="dica">Pensando numa ferramenta simples que organizasse clientes, orçamentos, cobranças e recibos no mesmo lugar.</p>
+                        <div class="options cols-2">
+                            <label class="option"><input type="radio" name="valor" value="gratis"><span class="option-label"><span class="opt-text">Só usaria se fosse grátis</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="valor" value="ate20"><span class="option-label"><span class="opt-text">Até R$ 20</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="valor" value="20-40"><span class="option-label"><span class="opt-text">De R$ 20 a R$ 40</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="valor" value="40-70"><span class="option-label"><span class="opt-text">De R$ 40 a R$ 70</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="valor" value="70+"><span class="option-label"><span class="opt-text">Mais de R$ 70, se resolver mesmo</span><span class="check"></span></span></label>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(7)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(8)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9: A UMA COISA -->
+                <div class="screen" id="screen-9">
+                    <div class="painel">
+                        <span class="rotulo">o mais importante</span>
+                        <h2 class="pergunta">Se uma ferramenta resolvesse só UMA coisa na sua rotina, qual seria?</h2>
+                        <p class="dica">Conte com as suas palavras. Um exemplo real ajuda muito.</p>
+                        <textarea class="text-field" id="q_uma" rows="4" maxlength="1500" placeholder="Ex.: Queria saber na hora quem ainda não me pagou este mês, sem ficar olhando conversa por conversa."></textarea>
+                        <h3 class="subpergunta">Tem algo que você faz toda semana e acha que perde tempo? (opcional)</h3>
+                        <textarea class="text-field" id="q_tempo" rows="3" maxlength="1500" placeholder="Ex.: Montar o orçamento do zero no Word toda vez."></textarea>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(8)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" onclick="next(9)">Continuar <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10: TESTE E ENVIO -->
+                <div class="screen" id="screen-10">
+                    <div class="painel">
+                        <span class="rotulo">última pergunta</span>
+                        <h2 class="pergunta">Toparia testar a ferramenta de graça e dar sua opinião?</h2>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="teste" value="sim"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-thumbs-up"></i></span><span class="opt-text">Sim, quero testar</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="teste" value="talvez"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-hand"></i></span><span class="opt-text">Talvez, me mostra quando estiver pronta</span><span class="check"></span></span></label>
+                            <label class="option"><input type="radio" name="teste" value="nao"><span class="option-label"><span class="opt-icon"><i class="fa-solid fa-xmark"></i></span><span class="opt-text">Não, obrigado(a)</span><span class="check"></span></span></label>
+                        </div>
+                        <h3 class="subpergunta">Quer comentar mais alguma coisa? (opcional)</h3>
+                        <textarea class="text-field" id="q_obs" rows="3" maxlength="1500" placeholder="Opcional."></textarea>
+                        <label class="consentimento"><input type="checkbox" id="q_lgpd"> <span>Concordo que a Syntax Code use estas respostas só para esta pesquisa e para falar comigo sobre a ferramenta. Posso pedir para apagar meus dados a qualquer momento em contato@syntaxcode.com.br.</span></label>
+                        <div class="btn-row">
+                            <button class="btn-back" onclick="goTo(9)">← Voltar</button>
+                            <a class="botao botao-primario botao-avancar" id="btnEnviar" onclick="enviar()"><i class="fa-solid fa-paper-plane"></i> Enviar respostas</a>
+                        </div>
+                        <div class="send-status" id="sendStatus"></div>
+                    </div>
+                </div>
+
+                <!-- OBRIGADO -->
+                <div class="screen" id="screen-fim">
+                    <div class="painel obrigado">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <h2 class="pergunta">Respostas enviadas. Muito obrigado!</h2>
+                        <p class="dica" style="border: 0; padding: 0; margin: 0 auto 0; max-width: 520px;" id="msgFim">Sua ajuda faz diferença para criar algo que realmente sirva no dia a dia.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="rodape-site"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="components.js?v=20260927"></script>
+    <script src="emailjs-envio.js?v=20260927"></script>
+    <script>
+        const TOTAL = 10;
+        let cur = 0;
+
+        function updateUI() {
+            const bar = document.getElementById('progressBar');
+            const info = document.getElementById('stepInfo');
+            if (cur === 0) { bar.style.width = '0%'; info.innerHTML = ''; }
+            else if (cur === 'fim') { bar.style.width = '100%'; info.innerHTML = 'Concluído <strong>✓</strong>'; }
+            else { bar.style.width = (cur / TOTAL * 100) + '%'; info.innerHTML = `Passo <strong>${cur}</strong> de ${TOTAL}`; }
+        }
+
+        function goTo(n) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(`screen-${n}`).classList.add('active');
+            cur = n; updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const R = n => document.querySelector(`input[name="${n}"]:checked`)?.value || null;
+        const C = n => [...document.querySelectorAll(`input[name="${n}"]:checked`)].map(e => e.value);
+        const G = id => document.getElementById(id)?.value?.trim() || '';
+        const emailValido = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        function profissao() {
+            const p = G('q_profissao');
+            return p === 'Outra' ? (G('q_outra') || 'Outra') : p;
+        }
+
+        function avisar(passo, msg) {
+            const btn = document.querySelector(`#screen-${passo} .botao-avancar`);
+            const orig = btn.innerHTML;
+            btn.classList.add('botao-erro');
+            btn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+            setTimeout(() => { btn.classList.remove('botao-erro'); btn.innerHTML = orig; }, 1800);
+        }
+
+        function next(passo) {
+            const regras = {
+                1: [() => G('q_nome').length > 1 && G('q_profissao') && emailValido(G('q_email')), 'Preencha nome, profissão e um e-mail válido'],
+                2: [() => R('equipe') && R('local'), 'Responda as duas perguntas'],
+                3: [() => R('clientes') && C('cobranca').length > 0, 'Responda as duas perguntas'],
+                4: [() => C('ferramenta').length > 0, 'Marque pelo menos uma opção'],
+                5: [() => C('dor').length > 0, 'Marque pelo menos uma opção'],
+                6: [() => C('doc').length > 0 && C('pag').length > 0, 'Responda as duas perguntas'],
+                7: [() => C('aparelho').length > 0 && R('preferencia'), 'Responda as duas perguntas'],
+                8: [() => !!R('valor'), 'Escolha uma opção'],
+                9: [() => G('q_uma').length > 3, 'Conte o que resolveria primeiro'],
+            };
+            const [ok, msg] = regras[passo];
+            if (!ok()) return avisar(passo, msg);
+            goTo(passo + 1);
+        }
+
+        document.getElementById('q_profissao').addEventListener('change', e => {
+            document.getElementById('campoOutra').style.display = e.target.value === 'Outra' ? 'block' : 'none';
+        });
+        document.querySelectorAll('input[name="ferramenta"]').forEach(c => c.addEventListener('change', () => {
+            document.getElementById('campoApp').style.display = C('ferramenta').includes('app') ? 'block' : 'none';
+        }));
+        document.querySelectorAll('input[name="dor"]').forEach(c => c.addEventListener('change', () => {
+            if (C('dor').length > 3) c.checked = false;
+        }));
+
+        const L = {
+            equipe: { sozinho: 'Sozinho(a)', ajudante: 'Com 1 ajudante/sócio', equipe: 'Pequena equipe (3+)' },
+            local: { pc: 'No computador', rua: 'Na rua / casa do cliente (celular)', misto: 'Metade de cada' },
+            cobranca: { projeto: 'Por serviço/projeto', mensal: 'Mensalidade fixa', sessao: 'Por hora/sessão/aula', pacote: 'Pacotes' },
+            ferramenta: { cabeca: 'De cabeça', caderno: 'Caderno/agenda', planilha: 'Planilha', whatsapp: 'WhatsApp', word: 'Word/Docs', app: 'App/sistema' },
+            dor: { clientes: 'Organizar clientes', orcamentos: 'Orçamentos', cobrar: 'Cobrar / quem deve', documentos: 'Recibos, contratos, propostas',
+                   agenda: 'Agenda e prazos', financeiro: 'Quanto ganhei/gastei', impostos: 'Impostos/MEI/nota', arquivos: 'Arquivos e fotos por cliente' },
+            doc: { orcamento: 'Orçamento/proposta', contrato: 'Contrato', recibo: 'Recibo', nota: 'Nota fiscal', relatorio: 'Relatório/laudo/plano', nenhum: 'Nenhum' },
+            pag: { pix: 'PIX', transferencia: 'Transferência/boleto', cartao: 'Cartão', dinheiro: 'Dinheiro' },
+            aparelho: { windows: 'Windows', mac: 'Mac', android: 'Android', iphone: 'iPhone' },
+            preferencia: { pc: 'Computador', celular: 'Celular', ambos: 'Os dois' },
+            valor: { gratis: 'Só grátis', ate20: 'Até R$ 20', '20-40': 'R$ 20 a 40', '40-70': 'R$ 40 a 70', '70+': 'Mais de R$ 70' },
+            teste: { sim: 'Sim, quer testar', talvez: 'Talvez', nao: 'Não' },
+        };
+        const lista = (grupo, valores) => valores.map(v => L[grupo][v]).join(', ');
+
+        function enviar() {
+            if (!R('teste')) return avisar(10, 'Responda se toparia testar');
+            if (!document.getElementById('q_lgpd').checked) return avisar(10, 'Marque a concordância para enviar');
+
+            const btn = document.getElementById('btnEnviar');
+            const status = document.getElementById('sendStatus');
+            btn.style.pointerEvents = 'none';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            status.className = 'send-status';
+
+            const nome = G('q_nome'), email = G('q_email'), prof = profissao();
+            const dores = lista('dor', C('dor'));
+            const params = {
+                nome, email,
+                rotulo: 'pesquisa autônomos',
+                titulo: `Pesquisa: ${prof}`,
+                destaque_rotulo: 'o que resolveria primeiro',
+                destaque_texto: G('q_uma'),
+                detalhes: linhasRelatorio([
+                    ['Nome', nome], ['Profissão', prof], ['E-mail', email], ['WhatsApp', G('q_whats')],
+                    ['Trabalha', L.equipe[R('equipe')]], ['Onde', L.local[R('local')]],
+                    ['Clientes/mês', R('clientes')], ['Como cobra', lista('cobranca', C('cobranca'))],
+                    ['Usa hoje', lista('ferramenta', C('ferramenta'))], ['App/sistema', G('q_app')],
+                    ['Maiores dores', dores], ['Documentos', lista('doc', C('doc'))],
+                    ['Recebe por', lista('pag', C('pag'))], ['Aparelhos', lista('aparelho', C('aparelho'))],
+                    ['Prefere usar', L.preferencia[R('preferencia')]], ['Pagaria/mês', L.valor[R('valor')]],
+                    ['Topa testar', L.teste[R('teste')]],
+                ]) + blocoRelatorio('se resolvesse só uma coisa', G('q_uma'))
+                   + blocoRelatorio('onde perde tempo toda semana', G('q_tempo') || 'Não informado')
+                   + blocoRelatorio('comentários', G('q_obs') || 'Nenhum'),
+                titulo_confirmacao: 'Recebemos suas respostas',
+                mensagem: 'Muito obrigado por responder à pesquisa! Suas respostas vão ajudar a criar uma ferramenta simples para '
+                        + 'quem trabalha por conta própria. ' + (R('teste') === 'nao'
+                            ? 'Se mudar de ideia sobre testar, é só responder a este e-mail.'
+                            : 'Quando a primeira versão estiver pronta, eu te chamo para testar.'),
+                r1_rotulo: 'Profissão', r1_valor: prof,
+                r2_rotulo: 'Maiores dores', r2_valor: dores,
+                r3_rotulo: 'Pagaria/mês', r3_valor: L.valor[R('valor')],
+                r4_rotulo: 'Topa testar', r4_valor: L.teste[R('teste')],
+            };
+
+            const envio = ehRobo(document) ? Promise.resolve() : enviarPeloEmailJS(params);
+            envio.then(() => {
+                document.getElementById('msgFim').textContent =
+                    `Uma confirmação foi enviada para ${email}. Sua ajuda faz diferença para criar algo que realmente sirva no dia a dia.`;
+                goTo('fim');
+            }).catch(err => {
+                console.error('EmailJS error:', err);
+                status.className = 'send-status error';
+                status.textContent = 'Não foi possível enviar agora. Verifique a internet e tente de novo.';
+                btn.style.pointerEvents = '';
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar respostas';
+            });
+        }
+
+        updateUI();
+    </script>
+</body>
+
+</html>
