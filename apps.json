@@ -14,46 +14,13 @@
   {
     "id": "poemarkethelper",
     "titulo": "PoE Market Helper",
-    "rotulo": "Games",
+    "rotulo": "Games · comunidade",
     "icone": "fa-coins",
     "versao": "v2.0",
-    "categoria": "utilitario",
+    "categoria": "projeto",
     "resumo": "Preço de drops, busca avançada, valor do baú, builds em alta e calculadora de flip para Path of Exile 1 e 2, no PC e no celular, com tradução PT-BR ⇄ EN.",
     "detalhes_url": "https://poe.syntaxcode.com.br/",
     "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/poe-v2.0/PoeMarketHelper_Setup.exe"
-  },
-  {
-    "id": "pytubepro",
-    "titulo": "PyTubePRO",
-    "rotulo": "Mídia",
-    "icone": "fa-circle-play",
-    "versao": "v1.0",
-    "categoria": "utilitario",
-    "resumo": "Baixe vídeos em até 4K ou extraia o áudio em MP3, com interface limpa e sem anúncios.",
-    "detalhes_url": "pytubepro.html",
-    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/PyTubePRO_Setup.exe"
-  },
-  {
-    "id": "filewizard",
-    "titulo": "FileWizard",
-    "rotulo": "Produtividade",
-    "icone": "fa-wand-magic-sparkles",
-    "versao": "v1.0",
-    "categoria": "utilitario",
-    "resumo": "Organize arquivos automaticamente em pastas por extensão, por parte do nome ou pelos dois critérios combinados.",
-    "detalhes_url": "filewizard.html",
-    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/FileWizard.exe"
-  },
-  {
-    "id": "filereplacer",
-    "titulo": "FileReplacer",
-    "rotulo": "Produtividade",
-    "icone": "fa-arrows-rotate",
-    "versao": "v1.0",
-    "categoria": "utilitario",
-    "resumo": "Substitua ou distribua o mesmo arquivo em dezenas de subpastas de uma vez, com registro de cada operação.",
-    "detalhes_url": "filereplacer.html",
-    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.0.0/Instalar.FileReplacer.exe"
   },
   {
     "id": "discovery",

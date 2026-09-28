@@ -8,7 +8,7 @@ HTML, CSS e JavaScript puros, sem build: basta editar e publicar.
 ## Estrutura
 
 ```text
-index.html              página inicial (serviços, Jurix em destaque, utilitários)
+index.html              página inicial (serviços, Jurix em destaque, projetos da comunidade)
 sistema-juridico.html   landing do Jurix (CSS e JS em jurix/)
 quem-somos.html         sobre a empresa
 discovery.html          levantamento de projeto (envio por EmailJS)

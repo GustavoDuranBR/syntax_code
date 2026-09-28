@@ -71,7 +71,7 @@ function montarRodape() {
                     <h4>Produtos</h4>
                     <ul>
                         <li><a href="sistema-juridico.html">Jurix</a></li>
-                        <li><a href="index.html#utilitarios">Utilitários</a></li>
+                        <li><a href="index.html#projetos">Projetos</a></li>
                     </ul>
                 </div>
                 <div>

@@ -1,117 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FileReplacer — Syntax Code</title>
-    <meta name="description" content="FileReplacer: substitua ou distribua o mesmo arquivo em dezenas de subpastas de uma vez, com registro de cada operação.">
-    <meta name="theme-color" content="#0A0F1C">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Sora:wght@600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css?v=20260927">
+    <title>Syntax Code</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://syntaxcode.com.br/">
+    <meta http-equiv="refresh" content="0; url=index.html">
+    <script>location.replace("index.html");</script>
 </head>
-
-<body>
-    <header id="cabecalho-site"></header>
-
-    <main>
-        <section class="hero hero-simples escuro">
-            <div class="largura largura-estreita">
-                <div class="produto-hero-marca">
-                    <span class="icone-quadro"><i class="fa-solid fa-arrows-rotate"></i></span>
-                    <span class="versao" data-versao="filereplacer">v1.0</span>
-                </div>
-                <span class="rotulo">utilitário · produtividade</span>
-                <h1>FileReplacer</h1>
-                <p class="hero-sub">Atualize o mesmo arquivo em dezenas de pastas de uma só vez — rápido, seguro e com registro de tudo o que foi feito.</p>
-                <div class="acoes">
-                    <a class="botao botao-primario" data-download="filereplacer" href="#"><i class="fa-solid fa-download"></i> Baixar para Windows</a>
-                    <a class="botao botao-fantasma" href="#recursos">Ver recursos</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="recursos" class="secao">
-            <div class="largura">
-                <div class="cabecalho-secao revelar">
-                    <span class="rotulo">recursos</span>
-                    <h2>O fim da cópia manual pasta por pasta.</h2>
-                    <p>Atualizar o mesmo arquivo em várias subpastas à mão é demorado e sujeito a erros. O FileReplacer faz isso em segundos.</p>
-                </div>
-                <div class="grade grade-3">
-                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-arrows-rotate"></i></span><h3>Substituição automática</h3><p>Se o arquivo já existe na pasta, ele é substituído pela versão nova.</p></article>
-                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-sitemap"></i></span><h3>Distribuição em lote</h3><p>Percorre todas as subpastas da pasta raiz e copia o arquivo para cada uma.</p></article>
-                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-circle-check"></i></span><h3>Execução segura</h3><p>Valida o arquivo e o diretório antes de começar.</p></article>
-                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-terminal"></i></span><h3>Log em tempo real</h3><p>Acompanhe arquivos substituídos, adicionados e eventuais erros.</p></article>
-                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-file-circle-exclamation"></i></span><h3>Registro de erros</h3><p>Falhas ficam gravadas num arquivo de log para análise posterior.</p></article>
-                    <article class="cartao revelar"><span class="icone-quadro"><i class="fa-solid fa-bolt"></i></span><h3>Sem travar</h3><p>A operação roda em segundo plano; a interface continua respondendo.</p></article>
-                </div>
-            </div>
-        </section>
-
-        <section class="secao secao-branca">
-            <div class="largura">
-                <div class="cabecalho-secao revelar">
-                    <span class="rotulo">como funciona</span>
-                    <h2>Simples e direto.</h2>
-                </div>
-                <ol class="passos revelar">
-                    <li><h3>Escolha o arquivo</h3><p>Selecione o arquivo que será copiado ou substituído.</p></li>
-                    <li><h3>Escolha a pasta raiz</h3><p>Indique a pasta que contém as subpastas de destino.</p></li>
-                    <li><h3>Execute</h3><p>O FileReplacer percorre todas as subpastas automaticamente.</p></li>
-                    <li><h3>Confira o log</h3><p>Veja o que foi substituído, adicionado ou falhou.</p></li>
-                </ol>
-            </div>
-        </section>
-
-        <section class="secao">
-            <div class="largura grade grade-2">
-                <div class="revelar">
-                    <span class="rotulo">exemplos de uso</span>
-                    <div class="cartao">
-                        <ul style="margin: 0;">
-                            <li>Atualizar o mesmo arquivo de configuração em vários projetos.</li>
-                            <li>Distribuir arquivos atualizados para diversas pastas de clientes.</li>
-                            <li>Substituir bibliotecas ou scripts em múltiplos diretórios.</li>
-                            <li>Automatizar tarefas repetitivas de manutenção de arquivos.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="revelar">
-                    <span class="rotulo">tecnologia</span>
-                    <div class="chips">
-                        <span class="chip">Python<small>linguagem</small></span>
-                        <span class="chip">Tkinter<small>interface</small></span>
-                        <span class="chip">ttkbootstrap<small>visual</small></span>
-                        <span class="chip">shutil / os<small>arquivos</small></span>
-                        <span class="chip">Threading<small>segundo plano</small></span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="secao" style="padding-top: 0;">
-            <div class="largura">
-                <div class="chamada revelar">
-                    <div>
-                        <span class="rotulo" style="color: var(--sinal);">download</span>
-                        <h2>FileReplacer para Windows</h2>
-                        <p>Instalador simples. Gratuito.</p>
-                    </div>
-                    <div class="acoes">
-                        <a class="botao botao-primario" data-download="filereplacer" href="#"><i class="fa-solid fa-download"></i> Baixar FileReplacer</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer id="rodape-site"></footer>
-    <script src="components.js?v=20260927"></script>
+<body style="background:#0a0f1c;color:#e7e9ee;font-family:system-ui,sans-serif;padding:40px">
+    <p>Esta ferramenta não está mais disponível. <a style="color:#7cc4ff" href="index.html">Voltar ao início</a>.</p>
 </body>
-
 </html>
