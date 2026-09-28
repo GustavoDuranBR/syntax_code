@@ -16,11 +16,11 @@
     "titulo": "PoE Market Helper",
     "rotulo": "Games",
     "icone": "fa-coins",
-    "versao": "v1.6",
+    "versao": "v2.0",
     "categoria": "utilitario",
     "resumo": "Preço de drops, busca avançada, valor do baú, builds em alta e calculadora de flip para Path of Exile 1 e 2, no PC e no celular, com tradução PT-BR ⇄ EN.",
     "detalhes_url": "https://poe.syntaxcode.com.br/",
-    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/poe-v1.6/PoeMarketHelper_Setup.exe"
+    "download_url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/poe-v2.0/PoeMarketHelper_Setup.exe"
   },
   {
     "id": "pytubepro",
