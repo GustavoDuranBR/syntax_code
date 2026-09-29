@@ -295,3 +295,8 @@ img { max-width: 100%; }
 .formulario-status.sucesso { color: #7DD3C0; }
 .formulario-status.erro { color: #F2A7A2; }
 .formulario button:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+/* Preço nos cartões de plano (página do Jurix) */
+.plano-preco { margin: 6px 0 2px; color: var(--texto-suave); }
+.plano-preco strong { font-family: var(--serif); font-size: 2.1rem; color: var(--marinho); }
+.nota-planos { margin-top: 22px; text-align: center; color: var(--texto-suave); font-size: .95rem; }
