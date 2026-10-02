@@ -1,16 +1,18 @@
 {
   "produto": "jurix",
-  "versao": "2.3.0",
-  "publicada": "2026-09-26",
-  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.3.0/Instalador_Jurix_v2.3.0.exe",
-  "sha256": "7afcf0e9ceff06b27baf6955e5e3690bbecfa538142fbd9b0f26b417ef3f1ce5",
-  "tamanho": 40698619,
+  "versao": "2.4.0",
+  "publicada": "2026-10-02",
+  "url": "https://github.com/GustavoDuranBR/syntax_code/releases/download/v2.4.0/Instalador_Jurix_v2.4.0.exe",
+  "sha256": "a6b4710ba152a877cd738d7b4a6bd308f73a31db8a3f2e7d6c95802e51445eb1",
+  "tamanho": 40701263,
   "notas": [
-    "Plano Autônomo: um único advogado, sem usuário de TI; acesso criado na tela Bem-vindo(a) e código de recuperação.",
-    "Meus dados: o advogado corrige OAB, telefone, e-mail e endereço a qualquer momento.",
-    "Copiloto: agenda e tarefas com datas mais fáceis de ler.",
-    "Correções: publicações começam logo após ativar a licença; PDF sem Word vai direto ao LibreOffice; log sem dados de clientes; janela do contrato com fundo sólido."
+    "Ativação com o seu e-mail: código de 6 dígitos e 7 dias grátis para o advogado autônomo, sem cartão.",
+    "Copiloto de IA e Radar CNJ pela sua conta Syntax Code: sem chave para configurar.",
+    "Licença renovada sozinha; o Jurix funciona até 30 dias sem internet.",
+    "Configurações mostram o plano e a situação da conta, e permitem liberar este computador.",
+    "Copiloto: aviso de falha da IA aparece sozinho, sem virar carta.",
+    "Quem usa chave de ativação continua funcionando normalmente."
   ],
   "obrigatoria": false,
-  "assinatura": "rGHyzAcnMQIu_N1xP2DSQe1CWPmkCgDr1QkIT-qVR7P-O3hl4faJdRDB7uoyXyYwh1jHzyUHtCza52Ymvc-9Aw"
+  "assinatura": "UULgg7DhRN6bSWUYa7UDEzkXJZifGDQQroFzJWy7omP6ZcmGlu_qg_fTubC53UE2odKQs4utyX8Z8DoXY8ZwCQ"
 }
